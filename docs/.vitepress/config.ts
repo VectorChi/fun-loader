@@ -21,6 +21,14 @@ export default defineConfig({
     ['meta', { property: 'og:url', content: site }],
     ['meta', { property: 'og:image', content: image }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    [
+      'script',
+      {
+        defer: '',
+        src: 'https://context7.com/docs7-analytics.js',
+        'data-site': 'c20904e9-a55e-43eb-a209-2712234b2555',
+      },
+    ],
   ],
   // Publishes /llms.txt and /llms-full.txt so AI tools can read the docs as plain text.
   vite: {
