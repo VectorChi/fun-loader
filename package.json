@@ -1,0 +1,87 @@
+{
+  "name": "fun-loader",
+  "version": "0.0.0",
+  "description": "A tiny web component that shows rotating, playful loading text while an AI request is generating.",
+  "license": "MIT",
+  "author": "Adim (https://github.com/VectorChi)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VectorChi/fun-loader.git"
+  },
+  "keywords": [
+    "web-component",
+    "custom-element",
+    "loader",
+    "loading",
+    "spinner",
+    "ai"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/vue/index.js",
+    "./dist/fun-loader.iife.js"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/fun-loader.iife.js",
+  "jsdelivr": "./dist/fun-loader.iife.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./element": {
+      "types": "./dist/element.d.ts",
+      "default": "./dist/element.js"
+    },
+    "./themes/*": {
+      "types": "./dist/themes/*.d.ts",
+      "default": "./dist/themes/*.js"
+    },
+    "./vue": {
+      "types": "./dist/vue/index.d.ts",
+      "default": "./dist/vue/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "play": "vite playground --open",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "size": "size-limit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "vue": ">=3.3"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@size-limit/preset-small-lib": "^14.2.0",
+    "happy-dom": "^21.0.3",
+    "size-limit": "^14.2.0",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5",
+    "vue": "^3.5.44"
+  },
+  "packageManager": "pnpm@9.15.9"
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>fun-loader playground</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font: 16px/1.5 system-ui, sans-serif;
+      }
+      body {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 24px 16px;
+      }
+      fieldset {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 24px;
+        border: 1px solid #8884;
+        border-radius: 8px;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      textarea {
+        width: 100%;
+        font: inherit;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .card {
+        padding: 16px;
+        border: 1px solid #8884;
+        border-radius: 8px;
+      }
+      .card h2 {
+        margin: 0 0 8px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        opacity: 0.6;
+      }
+      fun-loader {
+        font-size: var(--size, 16px);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>fun-loader</h1>
+
+    <fieldset>
+      <legend>Attributes</legend>
+      <label>interval <input id="interval" type="range" min="250" max="5000" step="250" value="2400" /> <output for="interval"></output></label>
+      <label>icon <select id="icon"></select></label>
+      <label><input id="shuffle" type="checkbox" /> shuffle</label>
+      <label><input id="paused" type="checkbox" /> paused</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Styles</legend>
+      <label>--fun-loader-fade <input id="fade" type="range" min="0" max="1500" step="50" value="300" /> <output for="fade"></output></label>
+      <label>font-size <input id="size" type="range" min="12" max="40" value="16" /> <output for="size"></output></label>
+      <label>--fun-loader-icon-color <input id="icon-color" type="color" value="#7c5cff" /></label>
+    </fieldset>
+
+    <div class="card" style="margin-top: 24px">
+      <h2>Icons</h2>
+      <div id="icons" style="display: flex; flex-wrap: wrap; gap: 24px"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="card" style="margin-top: 12px">
+      <h2>Custom messages (one per line)</h2>
+      <textarea id="custom" rows="3">Wrangling tokens…
+Asking nicely…
+Polishing the answer…</textarea>
+      <p><fun-loader id="custom-loader"></fun-loader> <button id="next" type="button">next()</button></p>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
