@@ -31,6 +31,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "customElements": "custom-elements.json",
   "unpkg": "./dist/fun-loader.iife.js",
   "jsdelivr": "./dist/fun-loader.iife.js",
   "exports": {
@@ -54,10 +55,12 @@
       "types": "./dist/react/index.d.ts",
       "default": "./dist/react/index.js"
     },
+    "./custom-elements.json": "./custom-elements.json",
     "./package.json": "./package.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "custom-elements.json"
   ],
   "publishConfig": {
     "access": "public"
@@ -104,6 +107,7 @@
     "typescript": "^6.0.3",
     "vite": "^8.3.4",
     "vitepress": "^1.6.4",
+    "vitepress-plugin-llms": "^1.14.0",
     "vitest": "^5.0.5",
     "vue": "^3.5.44"
   },

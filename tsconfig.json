@@ -14,6 +14,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "declaration": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "types": []
   },
