@@ -12,6 +12,7 @@ export default defineConfig([
       'themes/finance': 'src/themes/finance.ts',
       'themes/calm': 'src/themes/calm.ts',
       'themes/kitchen': 'src/themes/kitchen.ts',
+      'themes/transfer': 'src/themes/transfer.ts',
       'vue/index': 'src/vue/index.ts',
     },
     format: ['esm'],

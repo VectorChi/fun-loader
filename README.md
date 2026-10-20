@@ -26,7 +26,7 @@ Or straight from a CDN:
 
 | Attribute  | Property   | Default      | Description                                              |
 | ---------- | ---------- | ------------ | -------------------------------------------------------- |
-| `theme`    | `theme`    | `"thinking"` | One of `thinking`, `design`, `dev`, `calm`, `kitchen`, `finance`, or your own. |
+| `theme`    | `theme`    | `"thinking"` | One of `thinking`, `design`, `dev`, `calm`, `kitchen`, `finance`, `transfer`, or your own. |
 | `interval` | `interval` | `2400`       | Milliseconds between messages (minimum 250).             |
 | `paused`   | `paused`   | `false`      | Stops rotating.                                          |
 | `shuffle`  | `shuffle`  | `false`      | Random order, never the same message twice in a row.     |
@@ -55,6 +55,14 @@ An animated icon sits before the text. Pick one with the `icon` attribute:
 | `none`              | No icon                                   |
 
 From JavaScript, set the property: `loader.icon = 'dots'`. The list is exported as `ICONS`. An unknown name falls back to `spinner`. You can see every icon in the [playground](https://vectorchi.github.io/fun-loader/).
+
+## Payment flows
+
+`transfer` is written for money transfers: calm, reassuring and generic. It never names a step such as "Verifying recipient", because the loader can't know which step your backend is really on. If your flow has real stages, pass your own `messages` that match them.
+
+```html
+<fun-loader theme="transfer" icon="pulse" interval="3000"></fun-loader>
+```
 
 ## Custom themes
 
