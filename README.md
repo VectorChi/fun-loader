@@ -36,6 +36,26 @@ Or straight from a CDN:
 
 Read `el.current` for the message on screen and call `el.next()` to advance it.
 
+## Icons
+
+An animated icon sits before the text. Pick one with the `icon` attribute:
+
+```html
+<fun-loader icon="sparkle"></fun-loader>
+<fun-loader icon="none"></fun-loader> <!-- text only -->
+```
+
+| `icon`              | Looks like                                |
+| ------------------- | ----------------------------------------- |
+| `spinner` (default) | A ring with a gap, rotating               |
+| `dots`              | Three dots bouncing in turn               |
+| `bars`              | Three bars rising and falling in turn     |
+| `pulse`             | A dot that grows and fades out            |
+| `sparkle`           | A ✦ that twinkles and turns               |
+| `none`              | No icon                                   |
+
+From JavaScript, set the property: `loader.icon = 'dots'`. The list is exported as `ICONS`. An unknown name falls back to `spinner`. You can see every icon in the [playground](https://vectorchi.github.io/fun-loader/).
+
 ## Custom themes
 
 ```js
