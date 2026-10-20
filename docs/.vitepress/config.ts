@@ -14,6 +14,13 @@ export default defineConfig({
   lastUpdated: true,
   sitemap: { hostname: site },
   head: [
+    // Head hrefs aren't prefixed with `base`, so these spell out /fun-loader/.
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/fun-loader/logo.svg' }],
+    [
+      'link',
+      { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/fun-loader/logo-512.png' },
+    ],
+    ['link', { rel: 'apple-touch-icon', href: '/fun-loader/apple-touch-icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'fun-loader' }],
     ['meta', { property: 'og:title', content: 'fun-loader' }],
@@ -63,6 +70,7 @@ export default defineConfig({
     template: { compilerOptions: { isCustomElement: (tag) => tag === 'fun-loader' } },
   },
   themeConfig: {
+    logo: '/logo.svg',
     nav: [
       { text: 'Guide', link: '/installation' },
       { text: 'Playground', link: '/playground' },

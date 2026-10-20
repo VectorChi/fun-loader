@@ -6,7 +6,14 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!dist", "!coverage", "!docs/.vitepress/cache", "!docs/.vitepress/dist"]
+    "includes": [
+      "**",
+      "!dist",
+      "!coverage",
+      "!docs/.vitepress/cache",
+      "!docs/.vitepress/dist",
+      "!docs/public"
+    ]
   },
   "formatter": {
     "enabled": true,
