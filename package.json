@@ -53,6 +53,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "play": "vite playground --open",
+    "play:build": "vite build playground --base ./ --outDir ../playground-dist --emptyOutDir",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",

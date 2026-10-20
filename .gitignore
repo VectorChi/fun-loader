@@ -6,3 +6,4 @@ coverage
 docs/.nuxt
 docs/.output
 docs/node_modules
+playground-dist
