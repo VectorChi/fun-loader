@@ -1,5 +1,5 @@
 {
-  "name": "fun-loader",
+  "name": "@vectorchi/fun-loader",
   "version": "0.1.0",
   "description": "A tiny web component that shows rotating, playful loading text while an AI request is generating.",
   "license": "MIT",
@@ -51,6 +51,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

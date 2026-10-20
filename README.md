@@ -9,17 +9,17 @@ A tiny web component (~2 kB) that shows rotating, playful loading text while an 
 ## Install
 
 ```sh
-npm install fun-loader
+npm install @vectorchi/fun-loader
 ```
 
 ```js
-import 'fun-loader'; // defines <fun-loader> and registers every bundled theme
+import '@vectorchi/fun-loader'; // defines <fun-loader> and registers every bundled theme
 ```
 
 Or straight from a CDN:
 
 ```html
-<script src="https://unpkg.com/fun-loader"></script>
+<script src="https://unpkg.com/@vectorchi/fun-loader"></script>
 ```
 
 ## Attributes and properties
@@ -59,18 +59,18 @@ From JavaScript, set the property: `loader.icon = 'dots'`. The list is exported 
 ## Custom themes
 
 ```js
-import { registerTheme } from 'fun-loader';
+import { registerTheme } from '@vectorchi/fun-loader';
 
 registerTheme({ name: 'pirate', messages: ['Hoisting the sails…', 'Consulting the map…'] });
 ```
 
 ## Smaller builds
 
-`fun-loader/element` exports the element with no themes and no side effects (~1 kB):
+`@vectorchi/fun-loader/element` exports the element with no themes and no side effects (~1 kB):
 
 ```js
-import { define, registerTheme } from 'fun-loader/element';
-import { dev } from 'fun-loader/themes/dev';
+import { define, registerTheme } from '@vectorchi/fun-loader/element';
+import { dev } from '@vectorchi/fun-loader/themes/dev';
 
 registerTheme(dev);
 define(); // or define('my-loader')
@@ -80,7 +80,7 @@ define(); // or define('my-loader')
 
 ```vue
 <script setup>
-import { FunLoader } from 'fun-loader/vue';
+import { FunLoader } from '@vectorchi/fun-loader/vue';
 </script>
 
 <template>
