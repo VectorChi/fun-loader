@@ -11,6 +11,9 @@ importers:
       '@biomejs/biome':
         specifier: ^2.5.15
         version: 2.5.15
+      '@phosphor-icons/core':
+        specifier: ^2.1.1
+        version: 2.1.1
       '@size-limit/preset-small-lib':
         specifier: ^14.2.0
         version: 14.2.0(size-limit@14.2.0)
@@ -550,6 +553,9 @@ packages:
 
   '@oxc-project/types@0.154.0':
     resolution: {integrity: sha512-KYOUGQFlLWR+s4QMV2Q9ko38TZm7EdO87Qm7rvZLqk/webse/cDjtyxKhg/47l0byCbs/k46LT8qc4PKjAikzA==}
+
+  '@phosphor-icons/core@2.1.1':
+    resolution: {integrity: sha512-v4ARvrip4qBCImOE5rmPUylOEK4iiED9ZyKjcvzuezqMaiRASCHKcRIuvvxL/twvLpkfnEODCOJp5dM4eZilxQ==}
 
   '@rolldown/binding-android-arm-eabi@1.2.14':
     resolution: {integrity: sha512-aWR+XKH9+rW7m5fWq/5360J3mHycrx/o6xZM2DQFdJnTMdyP7/WzxPjhtLbVWdKo2y612/4U1bWqb3HQhiF7vg==}
@@ -2276,6 +2282,8 @@ snapshots:
     optional: true
 
   '@oxc-project/types@0.154.0': {}
+
+  '@phosphor-icons/core@2.1.1': {}
 
   '@rolldown/binding-android-arm-eabi@1.2.14':
     optional: true

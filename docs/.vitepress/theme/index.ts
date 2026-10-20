@@ -2,6 +2,7 @@ import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import Playground from './Playground.vue';
 import './custom.css';
+import './sidebar-icons.css';
 
 export default {
   extends: DefaultTheme,
