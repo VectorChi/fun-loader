@@ -33,4 +33,5 @@ jobs:
       - run: pnpm build
       - run: pnpm size
       # npm, not pnpm, so it handles the OIDC exchange and provenance itself.
-      - run: npm publish
+      # Staged: nothing goes live until a maintainer approves it with 2FA on npmjs.com.
+      - run: npm stage publish
