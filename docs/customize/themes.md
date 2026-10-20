@@ -1,3 +1,7 @@
+---
+description: "All 8 built-in fun-loader themes, from thinking and dev to finance and transfer, with every message and what each suits."
+---
+
 # Themes
 
 Pick a theme with `theme="…"`. Each has 12 messages, shown in order unless you set `shuffle`.

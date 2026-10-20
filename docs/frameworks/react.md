@@ -1,3 +1,7 @@
+---
+description: "Use fun-loader in React 18 and 19 and Next.js: props, refs, server components, and TypeScript types for the plain tag."
+---
+
 # React & Next.js
 
 ## Usage

@@ -1,3 +1,7 @@
+---
+description: "Use the calm transfer theme for money transfers, and show real progress steps without misleading users."
+---
+
 # Payment flows
 
 People are anxious while their money is moving. The `transfer` theme is written for that moment.

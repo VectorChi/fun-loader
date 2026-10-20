@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import { defineConfig, type HeadConfig } from 'vitepress';
 import llmstxt from 'vitepress-plugin-llms';
 import pkg from '../../package.json';
 
@@ -23,11 +23,9 @@ export default defineConfig({
     ['link', { rel: 'apple-touch-icon', href: '/fun-loader/apple-touch-icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'fun-loader' }],
-    ['meta', { property: 'og:title', content: 'fun-loader' }],
-    ['meta', { property: 'og:description', content: description }],
-    ['meta', { property: 'og:url', content: site }],
     ['meta', { property: 'og:image', content: image }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: image }],
     [
       'meta',
       { name: 'google-site-verification', content: 'yTh0PS1hhamC_jfQYHSr-_lWwzfhd29LzuraumH9aro' },
@@ -46,6 +44,34 @@ export default defineConfig({
       { defer: '', src: 'https://context7.com/widget.js', 'data-library': '/vectorchi/fun-loader' },
     ],
   ],
+  // Per-page canonical URL and link-preview tags, plus structured data on the homepage.
+  transformHead({ pageData, title, description }) {
+    const path = pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '');
+    const url = site + path;
+    const head: HeadConfig[] = [
+      ['link', { rel: 'canonical', href: url }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+    ];
+    if (path === '') {
+      const data = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareSourceCode',
+        name: 'fun-loader',
+        description: pkg.description,
+        url: site,
+        codeRepository: 'https://github.com/VectorChi/fun-loader',
+        programmingLanguage: 'TypeScript',
+        runtimePlatform: 'Web browser',
+        license: 'https://opensource.org/licenses/MIT',
+        author: { '@type': 'Person', name: 'Adimchi Oka' },
+        version: pkg.version,
+      };
+      head.push(['script', { type: 'application/ld+json' }, JSON.stringify(data)]);
+    }
+    return head;
+  },
   // Publishes /llms.txt and /llms-full.txt so AI tools can read the docs as plain text.
   vite: {
     plugins: [

@@ -1,4 +1,5 @@
 ---
+description: "Try every fun-loader theme, icon and option live, and test your own loading messages."
 aside: false
 ---
 

@@ -1,3 +1,7 @@
+---
+description: "Install fun-loader from npm or load it from a CDN with one script tag, and see what each import includes and how big it is."
+---
+
 # Installation
 
 ## From npm

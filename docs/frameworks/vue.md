@@ -1,3 +1,7 @@
+---
+description: "Use fun-loader in Vue with the FunLoader component, or as a plain custom element."
+---
+
 # Vue
 
 ## Usage

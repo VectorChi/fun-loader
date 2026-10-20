@@ -1,3 +1,7 @@
+---
+description: "Write your own loading messages for one loader or register a reusable theme, with tips for messages that read well."
+---
+
 # Custom messages
 
 The built-in themes cover common cases, but your own words often fit better.

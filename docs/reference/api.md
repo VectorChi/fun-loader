@@ -1,3 +1,7 @@
+---
+description: "The fun-loader API: element members, registerTheme, getTheme, define, defineAll, the exported themes, constants and types."
+---
+
 # API
 
 ## The element

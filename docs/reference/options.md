@@ -1,3 +1,7 @@
+---
+description: "Every fun-loader option (theme, icon, interval, shuffle, paused, label, messages) with types, defaults and attribute behavior."
+---
+
 # Options
 
 Every option works as an HTML attribute, as a JavaScript property, and as a prop on the React and Vue components. `messages` is the exception: it's a property and a prop only, because attributes can't hold a list.

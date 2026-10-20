@@ -1,3 +1,7 @@
+---
+description: "How fun-loader works with screen readers and reduced-motion settings, and how to set a helpful label."
+---
+
 # Accessibility
 
 fun-loader is accessible without any setup. This page explains what it does, and the one thing you might change.

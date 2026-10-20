@@ -1,3 +1,7 @@
+---
+description: "Show a loader while an AI request runs and replace it with the answer, in plain JavaScript, React and Vue, including streamed responses."
+---
+
 # Waiting for AI responses
 
 The most common use: show the loader while a request runs, then replace it with the answer.

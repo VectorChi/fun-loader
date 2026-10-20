@@ -1,3 +1,9 @@
+---
+title: "fun-loader: playful loading text for AI apps"
+titleTemplate: false
+description: "A ~3 kB web component that shows playful, rotating loading messages with animated icons while AI requests run. Works with HTML, React, Next.js and Vue."
+---
+
 # Introduction
 
 fun-loader shows playful, rotating loading text while an AI request or another slow task is running. Instead of a bare spinner, people see "Connecting the dots…", "Compiling thoughts…" or "Crunching the numbers…".

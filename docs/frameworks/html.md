@@ -1,3 +1,7 @@
+---
+description: "Use fun-loader in plain HTML and JavaScript: attributes, properties, showing and hiding, and creating loaders on the fly."
+---
+
 # Plain HTML & JavaScript
 
 ## In HTML

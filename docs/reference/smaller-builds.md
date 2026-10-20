@@ -1,3 +1,7 @@
+---
+description: "Load only the fun-loader element and the themes you need, and register it under a different tag name."
+---
+
 # Smaller builds
 
 The main import includes all 8 themes, about 2.9 kB in total. If you only need one or two themes, you can load less.
