@@ -22,6 +22,10 @@ export default defineConfig({
     ['meta', { property: 'og:image', content: image }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     [
+      'meta',
+      { name: 'google-site-verification', content: 'yTh0PS1hhamC_jfQYHSr-_lWwzfhd29LzuraumH9aro' },
+    ],
+    [
       'script',
       {
         defer: '',
