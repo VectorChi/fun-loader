@@ -28,10 +28,10 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm play:build
+      - run: pnpm docs:build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: playground-dist
+          path: docs/.vitepress/dist
       - id: deployment
         uses: actions/deploy-pages@v4

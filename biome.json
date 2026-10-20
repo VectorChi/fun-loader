@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!dist", "!coverage", "!docs/.nuxt", "!docs/.output"]
+    "includes": ["**", "!dist", "!coverage", "!docs/.vitepress/cache", "!docs/.vitepress/dist"]
   },
   "formatter": {
     "enabled": true,
@@ -29,5 +29,16 @@
         "noExplicitAny": "error"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.vue"],
+      "linter": {
+        "rules": {
+          "correctness": { "noUnusedVariables": "off" },
+          "style": { "useVueMultiWordComponentNames": "off" }
+        }
+      }
+    }
+  ]
 }

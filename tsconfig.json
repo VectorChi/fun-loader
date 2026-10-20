@@ -17,6 +17,6 @@
     "noEmit": true,
     "types": []
   },
-  "include": ["src", "test", "playground", "tsup.config.ts", "vitest.config.ts"],
+  "include": ["src", "test", "tsup.config.ts", "vitest.config.ts"],
   "exclude": ["dist", "node_modules", "docs", "test/smoke"]
 }

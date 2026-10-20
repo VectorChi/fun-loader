@@ -1,0 +1,49 @@
+:root {
+  --vp-c-brand-1: #6a4cf5;
+  --vp-c-brand-2: #7c5cff;
+  --vp-c-brand-3: #8f74ff;
+  --vp-c-brand-soft: rgba(124, 92, 255, 0.14);
+}
+
+.dark {
+  --vp-c-brand-1: #a594ff;
+  --vp-c-brand-2: #8f74ff;
+  --vp-c-brand-3: #7c5cff;
+  --vp-c-brand-soft: rgba(124, 92, 255, 0.2);
+}
+
+fun-loader {
+  --fun-loader-icon-color: var(--vp-c-brand-1);
+}
+
+/* A live example box. */
+.demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin: 16px 0;
+  padding: 20px 24px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px 32px;
+}
+
+.demo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.demo-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+}

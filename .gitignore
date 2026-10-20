@@ -3,7 +3,5 @@ dist
 coverage
 *.tgz
 .DS_Store
-docs/.nuxt
-docs/.output
-docs/node_modules
-playground-dist
+docs/.vitepress/cache
+docs/.vitepress/dist
