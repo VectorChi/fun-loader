@@ -1,66 +1,54 @@
 /*
- * Phosphor duotone icons before each sidebar link. Added in CSS, not in the
+ * Phosphor bold icons before each sidebar section heading. Added in CSS, not in the
  * sidebar labels, so search and llms.txt keep plain text. The icon is a mask
- * over currentColor, so it follows the link color (and the active state);
- * the duotone fill's 20% opacity carries through the mask.
+ * over currentColor, so it follows the heading color in light and dark mode.
+ *
+ * Sections are matched by position, so keep this order in step with the
+ * sidebar in config.ts.
  */
-.VPSidebar .VPSidebarItem a .text::before {
+.VPSidebar {
+  --sidebar-icon-size: 16px;
+  --sidebar-icon-gap: 8px;
+}
+
+.VPSidebar .group .VPSidebarItem.level-0 > .item .text::before {
   content: "";
   display: inline-block;
-  width: 1.15em;
-  height: 1.15em;
-  margin-right: 0.5em;
-  vertical-align: -0.22em;
+  width: var(--sidebar-icon-size);
+  height: var(--sidebar-icon-size);
+  margin-right: var(--sidebar-icon-gap);
+  vertical-align: -3px;
   background-color: currentColor;
   -webkit-mask: var(--sidebar-icon) center / contain no-repeat;
   mask: var(--sidebar-icon) center / contain no-repeat;
 }
 
-.VPSidebar a[href$="/fun-loader/"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/house-duotone.svg");
+/* Line the pages up with the heading text, after the icon. */
+.VPSidebar .group .VPSidebarItem.level-0 > .items {
+  padding-left: calc(var(--sidebar-icon-size) + var(--sidebar-icon-gap));
 }
-.VPSidebar a[href$="/installation"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/download-simple-duotone.svg");
+
+/* Getting started */
+.VPSidebar .group:nth-of-type(1) {
+  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/bold/rocket-launch-bold.svg");
 }
-.VPSidebar a[href$="/guides/ai-responses"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/sparkle-duotone.svg");
+/* Guides */
+.VPSidebar .group:nth-of-type(2) {
+  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/bold/book-open-bold.svg");
 }
-.VPSidebar a[href$="/guides/payment-flows"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/credit-card-duotone.svg");
+/* Frameworks */
+.VPSidebar .group:nth-of-type(3) {
+  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/bold/stack-bold.svg");
 }
-.VPSidebar a[href$="/guides/custom-messages"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/chat-text-duotone.svg");
+/* Customize */
+.VPSidebar .group:nth-of-type(4) {
+  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/bold/palette-bold.svg");
 }
-.VPSidebar a[href$="/frameworks/react"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/atom-duotone.svg");
+/* Reference */
+.VPSidebar .group:nth-of-type(5) {
+  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/bold/brackets-curly-bold.svg");
 }
-.VPSidebar a[href$="/frameworks/vue"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/triangle-duotone.svg");
-}
-.VPSidebar a[href$="/frameworks/html"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/code-duotone.svg");
-}
-.VPSidebar a[href$="/customize/themes"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/palette-duotone.svg");
-}
-.VPSidebar a[href$="/customize/icons"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/shapes-duotone.svg");
-}
-.VPSidebar a[href$="/customize/styling"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/paint-brush-duotone.svg");
-}
-.VPSidebar a[href$="/customize/accessibility"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/person-arms-spread-duotone.svg");
-}
-.VPSidebar a[href$="/reference/options"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/sliders-horizontal-duotone.svg");
-}
-.VPSidebar a[href$="/reference/api"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/brackets-curly-duotone.svg");
-}
-.VPSidebar a[href$="/reference/smaller-builds"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/package-duotone.svg");
-}
-.VPSidebar a[href$="/playground"] {
-  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/duotone/play-circle-duotone.svg");
+/* Playground */
+.VPSidebar .group:nth-of-type(6) {
+  --sidebar-icon: url("../../../node_modules/@phosphor-icons/core/assets/bold/play-circle-bold.svg");
 }
