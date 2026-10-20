@@ -9,6 +9,7 @@ export default defineConfig([
       'themes/thinking': 'src/themes/thinking.ts',
       'themes/design': 'src/themes/design.ts',
       'themes/dev': 'src/themes/dev.ts',
+      'themes/finance': 'src/themes/finance.ts',
       'themes/calm': 'src/themes/calm.ts',
       'themes/kitchen': 'src/themes/kitchen.ts',
       'vue/index': 'src/vue/index.ts',
