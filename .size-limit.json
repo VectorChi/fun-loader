@@ -14,5 +14,17 @@
     "name": "IIFE (CDN)",
     "path": "dist/fun-loader.iife.js",
     "limit": "5 KB"
+  },
+  {
+    "name": "React wrapper (excl. react)",
+    "path": "dist/react/index.js",
+    "ignore": ["react"],
+    "limit": "5 KB"
+  },
+  {
+    "name": "Vue wrapper (excl. vue)",
+    "path": "dist/vue/index.js",
+    "ignore": ["vue"],
+    "limit": "5 KB"
   }
 ]

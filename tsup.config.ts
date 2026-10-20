@@ -15,6 +15,7 @@ export default defineConfig([
       'themes/kitchen': 'src/themes/kitchen.ts',
       'themes/transfer': 'src/themes/transfer.ts',
       'vue/index': 'src/vue/index.ts',
+      'react/index': 'src/react/index.ts',
     },
     format: ['esm'],
     target: 'es2020',
@@ -22,7 +23,7 @@ export default defineConfig([
     clean: true,
     treeshake: true,
     splitting: true,
-    external: ['vue'],
+    external: ['vue', 'react'],
   },
   {
     entry: { 'fun-loader': 'src/index.ts' },

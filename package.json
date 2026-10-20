@@ -14,7 +14,9 @@
     "loader",
     "loading",
     "spinner",
-    "ai"
+    "ai",
+    "react",
+    "vue"
   ],
   "type": "module",
   "sideEffects": [
@@ -22,7 +24,9 @@
     "./dist/vue/index.js",
     "./dist/fun-loader.iife.js",
     "./src/index.ts",
-    "./src/vue/index.ts"
+    "./src/vue/index.ts",
+    "./dist/react/index.js",
+    "./src/react/index.ts"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -46,6 +50,10 @@
       "types": "./dist/vue/index.d.ts",
       "default": "./dist/vue/index.js"
     },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -55,7 +63,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && node scripts/use-client.mjs",
     "dev": "tsup --watch",
     "play": "vite playground --open",
     "play:build": "vite build playground --base ./ --outDir ../playground-dist --emptyOutDir",
@@ -68,10 +76,14 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "vue": ">=3.3"
+    "vue": ">=3.3",
+    "react": ">=18"
   },
   "peerDependenciesMeta": {
     "vue": {
+      "optional": true
+    },
+    "react": {
       "optional": true
     }
   },
@@ -81,7 +93,11 @@
   "devDependencies": {
     "@biomejs/biome": "^2.5.15",
     "@size-limit/preset-small-lib": "^14.2.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "happy-dom": "^21.0.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "size-limit": "^14.2.0",
     "tsup": "^9.0.0",
     "typescript": "^6.0.3",

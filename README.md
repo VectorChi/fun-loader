@@ -96,6 +96,20 @@ import { FunLoader } from '@vectorchi/fun-loader/vue';
 </template>
 ```
 
+## React and Next.js
+
+```tsx
+import { FunLoader } from '@vectorchi/fun-loader/react';
+
+{loading && <FunLoader theme="art" icon="sparkle" />}
+```
+
+Works with React 18 and 19. Props such as `messages={[...]}` and `paused={false}` behave the same in both. `ref` gives you the element, so `ref.current.next()` works.
+
+In Next.js, the wrapper is already a client component, so you can render it from a server component.
+
+Importing `@vectorchi/fun-loader/react` also adds TypeScript types for the plain `<fun-loader>` tag in TSX.
+
 ## Styling
 
 The text is exposed as `::part(text)` and the icon as `::part(icon)`. The icon is `1em` square, so it scales with `font-size`.
