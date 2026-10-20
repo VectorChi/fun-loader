@@ -20,7 +20,9 @@
   "sideEffects": [
     "./dist/index.js",
     "./dist/vue/index.js",
-    "./dist/fun-loader.iife.js"
+    "./dist/fun-loader.iife.js",
+    "./src/index.ts",
+    "./src/vue/index.ts"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",

@@ -30,9 +30,10 @@ iconSelect.addEventListener('change', () => {
 });
 
 const iconColor = $<HTMLInputElement>('icon-color');
-iconColor.addEventListener('input', () =>
-  document.body.style.setProperty('--fun-loader-icon-color', iconColor.value),
-);
+const applyIconColor = () =>
+  document.body.style.setProperty('--fun-loader-icon-color', iconColor.value);
+iconColor.addEventListener('input', applyIconColor);
+applyIconColor();
 
 function bindRange(id: string, apply: (value: string) => void, unit = ''): void {
   const input = $<HTMLInputElement>(id);

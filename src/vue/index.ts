@@ -1,5 +1,6 @@
 import { defineComponent, h, type PropType } from 'vue';
-import { defineAll, type FunLoaderIcon } from '../index';
+import type { FunLoaderIcon } from '../element';
+import { defineAll } from '../register';
 
 // Called explicitly: a bare side-effect import gets tree-shaken away.
 defineAll();
