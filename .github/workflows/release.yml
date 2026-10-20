@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-      # Node 24 ships npm 11.5+, which trusted publishing needs. No caching in release builds.
+      # No caching in release builds.
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -32,6 +32,9 @@ jobs:
       - run: pnpm test
       - run: pnpm build
       - run: pnpm size
+      # Trusted publishing needs npm 11.5.1+; don't rely on the version bundled with Node.
+      - run: npm install -g npm@latest && npm --version
       # npm, not pnpm, so it handles the OIDC exchange and provenance itself.
       # Staged: nothing goes live until a maintainer approves it with 2FA on npmjs.com.
-      - run: npm stage publish
+      # Verbose so a failed OIDC exchange shows up in the log instead of a bare E401.
+      - run: npm stage publish --loglevel verbose
