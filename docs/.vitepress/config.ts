@@ -29,6 +29,11 @@ export default defineConfig({
         'data-site': 'c20904e9-a55e-43eb-a209-2712234b2555',
       },
     ],
+    // "Ask the docs" chat widget. Deferred so it runs once the page body exists.
+    [
+      'script',
+      { defer: '', src: 'https://context7.com/widget.js', 'data-library': '/vectorchi/fun-loader' },
+    ],
   ],
   // Publishes /llms.txt and /llms-full.txt so AI tools can read the docs as plain text.
   vite: {
