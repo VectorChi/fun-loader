@@ -5,7 +5,7 @@
 
 Playful, rotating loading text for AI requests and other slow tasks. Instead of a bare spinner, show "Connecting the dots…", "Compiling thoughts…" or "Crunching the numbers…".
 
-![Six loaders, each pairing a theme with an icon](https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/demo.png)
+![Four loaders rotating their messages, each with a different theme and icon](https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/demo.gif)
 
 **[Documentation and live examples →](https://vectorchi.github.io/fun-loader/)**
 
