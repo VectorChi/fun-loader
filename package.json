@@ -1,9 +1,13 @@
 {
   "name": "@vectorchi/fun-loader",
   "version": "0.3.1",
-  "description": "A tiny web component that shows rotating, playful loading text while an AI request is generating.",
+  "description": "Playful, rotating loading messages for AI and LLM apps. A tiny web component with React and Vue wrappers.",
   "license": "MIT",
   "author": "Adim (https://github.com/VectorChi)",
+  "homepage": "https://vectorchi.github.io/fun-loader/",
+  "bugs": {
+    "url": "https://github.com/VectorChi/fun-loader/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VectorChi/fun-loader.git"
@@ -13,9 +17,17 @@
     "custom-element",
     "loader",
     "loading",
+    "loading-indicator",
+    "loading-text",
     "spinner",
+    "typing-indicator",
     "ai",
+    "llm",
+    "chatbot",
+    "chatgpt",
+    "streaming",
     "react",
+    "nextjs",
     "vue"
   ],
   "type": "module",
