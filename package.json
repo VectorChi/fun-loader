@@ -1,6 +1,6 @@
 {
   "name": "@vectorchi/fun-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A tiny web component that shows rotating, playful loading text while an AI request is generating.",
   "license": "MIT",
   "author": "Adim (https://github.com/VectorChi)",
