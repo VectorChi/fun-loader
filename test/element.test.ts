@@ -27,7 +27,16 @@ afterEach(() => {
 
 describe('<fun-loader>', () => {
   it('registers all bundled themes', () => {
-    for (const name of ['thinking', 'design', 'dev', 'calm', 'kitchen', 'finance', 'transfer']) {
+    for (const name of [
+      'thinking',
+      'design',
+      'dev',
+      'calm',
+      'kitchen',
+      'finance',
+      'transfer',
+      'art',
+    ]) {
       expect(getTheme(name)?.length).toBeGreaterThan(1);
     }
   });

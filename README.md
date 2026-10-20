@@ -26,7 +26,7 @@ Or straight from a CDN:
 
 | Attribute  | Property   | Default      | Description                                              |
 | ---------- | ---------- | ------------ | -------------------------------------------------------- |
-| `theme`    | `theme`    | `"thinking"` | One of `thinking`, `design`, `dev`, `calm`, `kitchen`, `finance`, `transfer`, or your own. |
+| `theme`    | `theme`    | `"thinking"` | One of `thinking`, `design`, `dev`, `calm`, `kitchen`, `finance`, `transfer`, `art`, or your own. |
 | `interval` | `interval` | `2400`       | Milliseconds between messages (minimum 250).             |
 | `paused`   | `paused`   | `false`      | Stops rotating.                                          |
 | `shuffle`  | `shuffle`  | `false`      | Random order, never the same message twice in a row.     |

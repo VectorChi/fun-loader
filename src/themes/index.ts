@@ -1,3 +1,4 @@
+export { art } from './art';
 export { calm } from './calm';
 export { design } from './design';
 export { dev } from './dev';

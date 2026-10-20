@@ -6,6 +6,7 @@ export default defineConfig([
       index: 'src/index.ts',
       element: 'src/element.ts',
       'themes/index': 'src/themes/index.ts',
+      'themes/art': 'src/themes/art.ts',
       'themes/thinking': 'src/themes/thinking.ts',
       'themes/design': 'src/themes/design.ts',
       'themes/dev': 'src/themes/dev.ts',
