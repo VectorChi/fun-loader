@@ -9,7 +9,7 @@ import {
   useLayoutEffect,
   useRef,
 } from 'react';
-import type { FunLoader as FunLoaderElement, FunLoaderIcon } from '../element';
+import type { FunLoader as FunLoaderElement, FunLoaderIcon, FunLoaderStage } from '../element';
 import { defineAll } from '../register';
 
 // Called explicitly: a bare side-effect import gets tree-shaken away.
@@ -18,6 +18,8 @@ defineAll();
 export interface FunLoaderProps extends HTMLAttributes<HTMLElement> {
   theme?: string;
   messages?: readonly string[];
+  /** Messages that change as the wait grows. Memoize it: a new array restarts the rotation. */
+  stages?: readonly FunLoaderStage[] | null;
   interval?: number;
   paused?: boolean;
   shuffle?: boolean;
@@ -29,7 +31,7 @@ export interface FunLoaderProps extends HTMLAttributes<HTMLElement> {
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 export const FunLoader = forwardRef<FunLoaderElement, FunLoaderProps>(function FunLoader(
-  { theme, messages, interval, paused, shuffle, label, icon, ...rest },
+  { theme, messages, stages, interval, paused, shuffle, label, icon, ...rest },
   ref,
 ) {
   const el = useRef<FunLoaderElement>(null);
@@ -43,7 +45,8 @@ export const FunLoader = forwardRef<FunLoaderElement, FunLoaderProps>(function F
     node.paused = !!paused;
     node.shuffle = !!shuffle;
     node.messages = messages;
-  }, [paused, shuffle, messages]);
+    node.stages = stages;
+  }, [paused, shuffle, messages, stages]);
 
   // Strings go through as attributes so server-rendered HTML already carries them.
   return createElement('fun-loader', {

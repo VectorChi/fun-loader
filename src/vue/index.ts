@@ -1,5 +1,5 @@
 import { defineComponent, h, type PropType } from 'vue';
-import type { FunLoaderIcon } from '../element';
+import type { FunLoaderIcon, FunLoaderStage } from '../element';
 import { defineAll } from '../register';
 
 // Called explicitly: a bare side-effect import gets tree-shaken away.
@@ -10,6 +10,7 @@ export const FunLoader = defineComponent({
   props: {
     theme: String,
     messages: Array as PropType<readonly string[]>,
+    stages: Array as PropType<readonly FunLoaderStage[] | null>,
     interval: Number,
     paused: Boolean,
     shuffle: Boolean,

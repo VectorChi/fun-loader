@@ -65,6 +65,16 @@ describe('React wrapper', () => {
     expect(el.className).toBe('x');
   });
 
+  it('passes stages through as a property', () => {
+    const stages = [
+      { after: 0, messages: ['first…'] },
+      { after: 5000, messages: ['later…'] },
+    ];
+    const { el } = render(createElement(FunLoader, { stages }));
+    expect(el.stages).toEqual(stages);
+    expect(el.current).toBe('first…');
+  });
+
   it('renders on the server with its attributes', () => {
     const html = renderToString(createElement(FunLoader, { theme: 'finance', interval: 2000 }));
     expect(html).toContain('<fun-loader');
