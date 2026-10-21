@@ -68,10 +68,10 @@ It is a review document, not documentation.
 ## Demo clip (0.4.0)
 
 **The clip is recorded on a virtual clock, frame by frame.**
-`docs/demo.html` shows three themes with stage 1 moved to 5 s through the `stages` property, so one stage change fits in a 10 s loop. A one-off script (not committed, since it needs Playwright and an ffmpeg binary that would bloat every install) drives the page with Playwright's fake clock, steps 1/15 s at a time, sets each CSS animation to the matching time, screenshots every frame at 2x, and encodes them with ffmpeg: a 451 KB GIF, a 333 KB WebM and a 390 KB MP4. Timing is exact and the loop is repeatable, unlike a real-time screen recording.
+`docs/demo.html` shows three themes with stage 1 moved to 5 s through the `stages` property, so one stage change fits in a 10 s loop. A one-off script (not committed, since it needs Playwright and an ffmpeg binary that would bloat every install) drives the page with Playwright's fake clock, steps 1/15 s at a time, sets each CSS animation to the matching time, screenshots every frame at 2x, and encodes them with ffmpeg: a 451 KB GIF for the README and a 390 KB MP4 for social posts, both in `.github/assets/`. Timing is exact and the loop is repeatable, unlike a real-time screen recording.
 
 **No video on the landing page.**
-Screenshots of the landing page at 1280x800 and 390x844 both show all six live loaders fully above the fold (the first at 343 px and 459 px). The real component already does the job, so the clip is used in the README only. The files are also in `docs/public/` for later use.
+Screenshots of the landing page at 1280x800 and 390x844 both show all six live loaders fully above the fold (the first at 343 px and 459 px). The real component already does the job, so the clip is used in the README only. The WebM and the `docs/public/` copies were dropped as unused; the demo page can regenerate them.
 
 **The demo page sets `ordered` and offsets the shared long-wait lines per card.**
 `ordered` makes every recording identical. Without the offset, two themes that share the long-wait pool would show the same line at the same moment.
