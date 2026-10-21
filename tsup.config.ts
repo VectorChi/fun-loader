@@ -1,4 +1,9 @@
-import { defineConfig } from 'tsup';
+import { defineConfig, type Options } from 'tsup';
+
+// Shorten the element's private, underscore-prefixed members in the output (see DECISIONS.md).
+const esbuildOptions: Options['esbuildOptions'] = (options) => {
+  options.mangleProps = /^_/;
+};
 
 export default defineConfig([
   {
@@ -24,6 +29,7 @@ export default defineConfig([
     treeshake: true,
     splitting: true,
     external: ['vue', 'react'],
+    esbuildOptions,
   },
   {
     entry: { 'fun-loader': 'src/index.ts' },
@@ -32,5 +38,6 @@ export default defineConfig([
     target: 'es2020',
     minify: true,
     outExtension: () => ({ js: '.iife.js' }),
+    esbuildOptions,
   },
 ]);

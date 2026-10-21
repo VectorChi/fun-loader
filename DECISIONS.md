@@ -75,3 +75,10 @@ Screenshots of the landing page at 1280x800 and 390x844 both show all six live l
 
 **The demo page sets `ordered` and offsets the shared long-wait lines per card.**
 `ordered` makes every recording identical. Without the offset, two themes that share the long-wait pool would show the same line at the same moment.
+
+## Build (0.4.0)
+
+**Underscore-prefixed members are mangled in the build (`mangleProps: /^_/`).**
+Minifiers don't shorten property names, so the element's private members (`_elapsed`, `_stageTimer` and so on) shipped at full length. Mangling them saved 0.08 kB on the main entry. Rules this depends on:
+- Only the element's private members may start with `_`. Public API and anything read from outside the bundle must not.
+- The mangled names are set on a real DOM element, so they must never collide with built-in properties such as `id` or `title`. With fewer than 52 private members, esbuild uses single letters, and no standard `HTMLElement` property is a single letter. If the element ever grows past that, reserve DOM names or switch to `#private` fields.
