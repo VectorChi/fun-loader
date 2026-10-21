@@ -7,7 +7,7 @@ const icons = ref<readonly string[]>([]);
 
 const icon = ref('spinner');
 const interval = ref(2400);
-const shuffle = ref(false);
+const ordered = ref(false);
 const paused = ref(false);
 const fade = ref(300);
 const size = ref(16);
@@ -48,7 +48,7 @@ onMounted(async () => {
         </select>
       </label>
       <label>Interval <input v-model.number="interval" type="range" min="250" max="5000" step="250" /> <code>{{ interval }}ms</code></label>
-      <label><input v-model="shuffle" type="checkbox" /> shuffle</label>
+      <label><input v-model="ordered" type="checkbox" /> ordered</label>
       <label><input v-model="paused" type="checkbox" /> paused</label>
       <label>Fade <input v-model.number="fade" type="range" min="0" max="1500" step="50" /> <code>{{ fade }}ms</code></label>
       <label>Size <input v-model.number="size" type="range" min="12" max="40" /> <code>{{ size }}px</code></label>
@@ -58,7 +58,7 @@ onMounted(async () => {
     <div v-if="ready" class="pg-grid" :style="style">
       <div v-for="name in themes" :key="name" class="pg-card">
         <span class="demo-label">{{ name }}</span>
-        <fun-loader :theme="name" :icon="icon" :interval="interval" :shuffle="shuffle" :paused="paused" />
+        <fun-loader :theme="name" :icon="icon" :interval="interval" :ordered="ordered" :paused="paused" />
       </div>
     </div>
 
@@ -71,7 +71,7 @@ onMounted(async () => {
           :messages="messages"
           :icon="icon"
           :interval="interval"
-          :shuffle="shuffle"
+          :ordered="ordered"
           :paused="paused"
         />
         <button type="button" @click="customLoader?.next()">next()</button>

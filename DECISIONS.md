@@ -39,3 +39,14 @@ The element-only build (`/element`) carries no copy at all, and custom themes re
 
 **`staged`, `LONG_WAIT` and `VERY_LONG_WAIT` are exported from the main entry.**
 Custom themes can opt in to the shared long-wait lines with `stages: staged(messages)`. They are already in the bundle, so exporting them costs nothing. They are exported from `src/index.ts`, not `src/themes/index.ts`, because `defineAll` registers everything exported from the themes index as a theme.
+
+## Shuffle by default (0.4.0)
+
+**`ordered` replaces `shuffle` as the attribute.**
+Boolean attributes are on whenever present, so a `shuffle` attribute that defaults to on could never be turned off in HTML. The new `ordered` attribute (default off) turns shuffling off instead. The `shuffle` HTML attribute is no longer observed: shuffling is the default, so it was redundant anyway.
+
+**`shuffle` stays as a property and as a React/Vue prop, defined as `!ordered`.**
+Setting `el.shuffle = false` sets `ordered`. In the wrappers, `ordered` wins when given; otherwise an explicit `shuffle={false}` still means ordered, so code written for 0.3 keeps its behavior. Vue's `shuffle` prop defaults to `undefined` (not Vue's usual `false` for booleans), so an absent prop doesn't force ordering.
+
+**The shuffle bag never repeats the message on screen, but a reset starts clean.**
+Every message in a stage shows once before any repeats, and the first message of a new bag is never the one on screen. That rule applies to natural advances (rotation, reshuffles, stage switches). When an option changes (`messages`, `stages`, `theme`, `ordered`), the element starts clean, so turning on `ordered` always begins at the first written message.

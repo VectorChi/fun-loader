@@ -45,13 +45,13 @@
               "description": "Milliseconds between messages. Values below 250 become 250."
             },
             {
-              "name": "shuffle",
-              "fieldName": "shuffle",
+              "name": "ordered",
+              "fieldName": "ordered",
               "type": {
                 "text": "boolean"
               },
               "default": "false",
-              "description": "Show messages in random order, never the same one twice in a row."
+              "description": "Show messages in the order written. By default each stage is shuffled, and every message shows once before any repeats."
             },
             {
               "name": "paused",
@@ -102,12 +102,22 @@
             },
             {
               "kind": "field",
-              "name": "shuffle",
+              "name": "ordered",
               "type": {
                 "text": "boolean"
               },
               "default": "false",
-              "attribute": "shuffle"
+              "attribute": "ordered"
+            },
+            {
+              "kind": "field",
+              "name": "shuffle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Deprecated: the opposite of ordered, kept for code written before 0.4.0. Property only.",
+              "deprecated": "Use ordered instead."
             },
             {
               "kind": "field",

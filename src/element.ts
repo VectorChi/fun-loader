@@ -69,7 +69,7 @@ const css = `:host{display:inline-flex;align-items:center;gap:var(--fun-loader-g
 const Base = (typeof HTMLElement === 'undefined' ? class {} : HTMLElement) as typeof HTMLElement;
 
 export class FunLoader extends Base {
-  static observedAttributes = ['theme', 'interval', 'paused', 'shuffle', 'label', 'icon'];
+  static observedAttributes = ['theme', 'interval', 'paused', 'ordered', 'label', 'icon'];
 
   private _messages: readonly string[] | undefined;
   /** undefined: use the theme's stages. null: staging disabled. */
@@ -109,11 +109,20 @@ export class FunLoader extends Base {
     this.toggleAttribute('paused', value);
   }
 
+  /** Show messages in the order written instead of shuffled. */
+  get ordered(): boolean {
+    return this.hasAttribute('ordered');
+  }
+  set ordered(value: boolean) {
+    this.toggleAttribute('ordered', value);
+  }
+
+  /** The opposite of `ordered`, kept for code written before shuffling became the default. */
   get shuffle(): boolean {
-    return this.hasAttribute('shuffle');
+    return !this.ordered;
   }
   set shuffle(value: boolean) {
-    this.toggleAttribute('shuffle', value);
+    this.ordered = !value;
   }
 
   get label(): string {
@@ -216,7 +225,7 @@ export class FunLoader extends Base {
     const list = this.messages;
     if (!this._bag.length) {
       const order = list.map((_, i) => i);
-      if (this.shuffle) {
+      if (!this.ordered) {
         for (let i = order.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [order[i], order[j]] = [order[j] as number, order[i] as number];
@@ -240,6 +249,8 @@ export class FunLoader extends Base {
   private _reset(): void {
     if (!this._text) return;
     const now = this._now();
+    // A reset starts clean: the no-repeat rule is for natural advances, not option changes.
+    this._text.textContent = '';
     // Stages are sorted, so the current one is the last that has started.
     this._enter(Math.max(0, this.stages.filter((s) => s.after <= now).length - 1));
     this._renderLabel();

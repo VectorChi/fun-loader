@@ -22,6 +22,9 @@ export interface FunLoaderProps extends HTMLAttributes<HTMLElement> {
   stages?: readonly FunLoaderStage[] | null;
   interval?: number;
   paused?: boolean;
+  /** Show messages in the order written instead of shuffled. */
+  ordered?: boolean;
+  /** @deprecated Shuffling is the default; use `ordered` instead. `shuffle={false}` still means ordered. */
   shuffle?: boolean;
   label?: string;
   icon?: FunLoaderIcon;
@@ -31,7 +34,7 @@ export interface FunLoaderProps extends HTMLAttributes<HTMLElement> {
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 export const FunLoader = forwardRef<FunLoaderElement, FunLoaderProps>(function FunLoader(
-  { theme, messages, stages, interval, paused, shuffle, label, icon, ...rest },
+  { theme, messages, stages, interval, paused, ordered, shuffle, label, icon, ...rest },
   ref,
 ) {
   const el = useRef<FunLoaderElement>(null);
@@ -43,10 +46,10 @@ export const FunLoader = forwardRef<FunLoaderElement, FunLoaderProps>(function F
     const node = el.current;
     if (!node) return;
     node.paused = !!paused;
-    node.shuffle = !!shuffle;
+    node.ordered = ordered ?? shuffle === false;
     node.messages = messages;
     node.stages = stages;
-  }, [paused, shuffle, messages, stages]);
+  }, [paused, ordered, shuffle, messages, stages]);
 
   // Strings go through as attributes so server-rendered HTML already carries them.
   return createElement('fun-loader', {
