@@ -29,6 +29,15 @@ fun-loader shows playful, rotating loading text while an AI request or another s
 - **Your words when you need them.** Pass your own messages, or register a theme your whole app can use.
 - **Accessible by default.** Screen readers hear one short label instead of every rotating message, and it respects reduced-motion settings.
 
+## When to use it
+
+Use fun-loader when the wait is open-ended and usually takes a few seconds or more, such as an LLM response, image generation, a report or a payment.
+
+- **Under a second:** a plain spinner is enough.
+- **Known progress, such as a file upload:** use a progress bar. If your task has real steps, you can also set your own [`messages`](/guides/custom-messages) and change them as each step happens.
+
+Pick a [theme](/customize/themes) that matches the task: `thinking` (default) for chat, `dev` for code, `design`, `art` for images, `finance` for reports, `transfer` for [payments](/guides/payment-flows), `kitchen` or `calm`.
+
 ## Next steps
 
 - [Install it](/installation) from npm or a CDN.

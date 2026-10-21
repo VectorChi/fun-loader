@@ -1,10 +1,32 @@
-import { defineConfig, type HeadConfig } from 'vitepress';
+import { defineConfig, type HeadConfig, type UserConfig } from 'vitepress';
 import llmstxt from 'vitepress-plugin-llms';
 import pkg from '../../package.json';
 
 const site = 'https://vectorchi.github.io/fun-loader/';
 const description = 'Playful, rotating loading text for AI requests and other slow tasks.';
 const image = 'https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/demo.png';
+
+// The plugin is typed against the repo's Vite 8 (which Vitest needs), while VitePress bundles
+// Vite 5. The plugin API is the same at runtime, so cast it to the type VitePress expects.
+type VitePlugin = NonNullable<NonNullable<UserConfig['vite']>['plugins']>[number];
+
+// Publishes /llms.txt and /llms-full.txt so AI tools can read the docs as plain text.
+const llms = llmstxt({
+  domain: 'https://vectorchi.github.io',
+  excludeIndexPage: false,
+  details: [
+    'fun-loader is a ~3 kB web component, `<fun-loader>`, that shows rotating, playful loading messages with an animated icon while an AI/LLM request or other slow task runs. No dependencies.',
+    '',
+    '- When to use: open-ended waits of a few seconds or more (LLM responses, image generation, reports, payments). For waits under a second a plain spinner is enough; for known progress such as uploads, use a progress bar.',
+    '- Install: `npm install @vectorchi/fun-loader`, then `import "@vectorchi/fun-loader"` once. CDN: `<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.3"></script>`.',
+    '- HTML: `<fun-loader theme="thinking" icon="spinner"></fun-loader>`.',
+    '- React/Next.js: `import { FunLoader } from "@vectorchi/fun-loader/react"`, then `<FunLoader theme="dev" />`. Works in React 18 and 19 and in Next.js server components.',
+    '- Vue: `import { FunLoader } from "@vectorchi/fun-loader/vue"`.',
+    '- Themes: thinking (default), dev, design, art, kitchen, finance, transfer (payments), calm. Icons: spinner (default), dots, bars, pulse, sparkle, none.',
+    '- Options (attributes and properties): theme, icon, interval (ms, default 2400), shuffle, paused, label (screen-reader text, default "Loading"); `messages` (string[]) is a property/prop only and overrides theme.',
+    '- Show it while waiting and remove it when the result arrives; removing it stops its timer.',
+  ].join('\n'),
+}) as unknown as VitePlugin;
 
 export default defineConfig({
   title: 'fun-loader',
@@ -72,25 +94,8 @@ export default defineConfig({
     }
     return head;
   },
-  // Publishes /llms.txt and /llms-full.txt so AI tools can read the docs as plain text.
   vite: {
-    plugins: [
-      llmstxt({
-        domain: 'https://vectorchi.github.io',
-        excludeIndexPage: false,
-        details: [
-          'fun-loader is a ~3 kB web component, `<fun-loader>`, that shows rotating, playful loading messages with an animated icon while an AI/LLM request or other slow task runs. No dependencies.',
-          '',
-          '- Install: `npm install @vectorchi/fun-loader`, then `import "@vectorchi/fun-loader"` once. CDN: `<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.3"></script>`.',
-          '- HTML: `<fun-loader theme="thinking" icon="spinner"></fun-loader>`.',
-          '- React/Next.js: `import { FunLoader } from "@vectorchi/fun-loader/react"`, then `<FunLoader theme="dev" />`. Works in React 18 and 19 and in Next.js server components.',
-          '- Vue: `import { FunLoader } from "@vectorchi/fun-loader/vue"`.',
-          '- Themes: thinking (default), dev, design, art, kitchen, finance, transfer (payments), calm. Icons: spinner (default), dots, bars, pulse, sparkle, none.',
-          '- Options (attributes and properties): theme, icon, interval (ms, default 2400), shuffle, paused, label (screen-reader text, default "Loading"); `messages` (string[]) is a property/prop only and overrides theme.',
-          '- Show it while waiting and remove it when the result arrives; removing it stops its timer.',
-        ].join('\n'),
-      }),
-    ],
+    plugins: [llms],
   },
   vue: {
     template: { compilerOptions: { isCustomElement: (tag) => tag === 'fun-loader' } },

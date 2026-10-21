@@ -14,6 +14,15 @@ Playful, rotating loading text for AI requests and other slow tasks. Instead of 
 - **8 themes and 5 animated icons**, or your own messages.
 - **Accessible:** screen readers hear one short label, not every rotating message, and it respects reduced-motion settings.
 
+## When to use it
+
+Use fun-loader when the wait is open-ended and usually takes a few seconds or more, such as an LLM response, image generation, a report or a payment.
+
+- **Under a second:** a plain spinner is enough.
+- **Known progress, such as a file upload:** use a progress bar. If your task has real steps, you can also set your own `messages` and change them as each step happens.
+
+Pick a theme that matches the task: `thinking` (default) for chat, `dev` for code, `design`, `art` for images, `finance` for reports, `transfer` for payments, `kitchen` or `calm`.
+
 ## Quick start
 
 ```sh
