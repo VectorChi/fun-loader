@@ -32,6 +32,26 @@ const scaledStages = computed(() => {
   }
   return out;
 });
+// The markup and CSS for the current settings, so people can copy what they see.
+const snippet = computed(() => {
+  const attrs = ['theme="thinking"'];
+  if (icon.value !== 'spinner') attrs.push(`icon="${icon.value}"`);
+  if (interval.value !== 2400) attrs.push(`interval="${interval.value}"`);
+  if (ordered.value) attrs.push('ordered');
+  if (paused.value) attrs.push('paused');
+  const css: string[] = [];
+  if (size.value !== 16) css.push(`  font-size: ${size.value}px;`);
+  if (color.value !== '#7c5cff') css.push(`  --fun-loader-icon-color: ${color.value};`);
+  if (fade.value !== 300) css.push(`  --fun-loader-fade: ${fade.value}ms;`);
+  const html = `<fun-loader ${attrs.join(' ')}></fun-loader>`;
+  return css.length ? `${html}\n\n<style>\nfun-loader {\n${css.join('\n')}\n}\n</style>` : html;
+});
+const copied = ref(false);
+async function copySnippet(): Promise<void> {
+  await navigator.clipboard.writeText(snippet.value);
+  copied.value = true;
+  setTimeout(() => (copied.value = false), 1500);
+}
 const scaledInterval = computed(() => Math.max(250, Math.round(interval.value / speed.value)));
 function restart(): void {
   run.value++;
@@ -132,6 +152,14 @@ onBeforeUnmount(() => clearInterval(tick));
       </div>
     </div>
 
+    <div class="pg-card pg-snippet">
+      <div class="pg-row pg-snippet-head">
+        <span class="demo-label">Your settings, ready to paste</span>
+        <button type="button" @click="copySnippet">{{ copied ? 'Copied' : 'Copy' }}</button>
+      </div>
+      <pre><code>{{ snippet }}</code></pre>
+    </div>
+
     <div v-if="ready" class="pg-card pg-custom" :style="style">
       <span class="demo-label">Your own messages (one per line)</span>
       <textarea v-model="custom" rows="3" />
@@ -220,6 +248,21 @@ onBeforeUnmount(() => clearInterval(tick));
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
   background: var(--vp-c-bg-soft);
+}
+.pg-snippet {
+  margin-top: 12px;
+}
+.pg-snippet-head {
+  justify-content: space-between;
+}
+.pg-snippet pre {
+  margin: 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  border-radius: 6px;
+  background: var(--vp-c-bg);
 }
 .pg-custom {
   margin-top: 12px;

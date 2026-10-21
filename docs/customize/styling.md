@@ -70,6 +70,53 @@ The element is `inline-flex`, so it sits in a line of text and lines up with it.
 }
 ```
 
+## Dark mode
+
+The text and the icon use the surrounding text color, so in most sites dark mode works with no changes. If you set your own icon color, give it a dark-mode value too:
+
+```css
+fun-loader {
+  --fun-loader-icon-color: #6a4cf5;
+}
+
+@media (prefers-color-scheme: dark) {
+  fun-loader {
+    --fun-loader-icon-color: #a594ff;
+  }
+}
+```
+
+## Using your design tokens
+
+Point the custom properties at your own variables, so the loader follows your theme everywhere it appears:
+
+```css
+fun-loader {
+  --fun-loader-icon-color: var(--color-accent);
+  --fun-loader-gap: var(--space-2);
+  color: var(--color-text-muted);
+}
+```
+
+## Spinner only, for buttons
+
+Inside a button there's rarely room for a sentence. Hide the text part to keep only the animated icon. The visually hidden `label` stays in place for screen readers, but a button combines everything inside it into one spoken name, so check the result with a screen reader:
+
+```html
+<button disabled>
+  <fun-loader icon="spinner" label="Saving"></fun-loader>
+  Save
+</button>
+```
+
+```css
+button fun-loader::part(text) {
+  display: none;
+}
+```
+
+The icon is `1em` square, so it matches the button's font size.
+
 ## Hiding
 
 Use the `hidden` attribute, or remove the element. `display: none` from your own CSS also works.

@@ -22,6 +22,23 @@ define();
 
 Each theme is its own file: `@vectorchi/fun-loader/themes/thinking`, `…/themes/art`, and so on.
 
+Each theme module includes that theme's long-wait lines, so themes added this way still change their messages after 8 and 20 seconds.
+
+## Only your own messages
+
+If you never use a built-in theme, skip them all. Define the element, then give each loader its own `messages` or `stages`:
+
+```js
+import { define } from '@vectorchi/fun-loader/element';
+
+define();
+
+const loader = document.querySelector('fun-loader');
+loader.messages = ['Reading your files…', 'Writing a summary…'];
+```
+
+Without a theme or messages, a loader shows a plain "Thinking…", so nothing breaks if you forget one.
+
 ## A different tag name
 
 `define()` takes a tag name, in case `<fun-loader>` clashes with something else on your page:
@@ -36,4 +53,10 @@ define('ai-loader');
 
 ## When it's worth it
 
-Sometimes. The difference is about 2 kB, roughly the size of a small icon. Use the main import unless every kilobyte counts.
+Sometimes. The difference is about 2 kB, roughly the size of a small icon. Use the main import unless every kilobyte counts, for example on a landing page with a tight performance budget.
+
+## How the sizes are measured
+
+The sizes on these pages are what your users download: the code bundled and minified the way an app's build would, then compressed with brotli, as most servers and CDNs do. The React and Vue figures leave out React and Vue themselves, since your app already loads them.
+
+Every change to fun-loader is checked against size limits before it can be released, so these numbers can't quietly grow.
