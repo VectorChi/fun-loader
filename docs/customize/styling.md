@@ -3,7 +3,7 @@ title: "Style the loader with CSS custom properties"
 description: "Style fun-loader with CSS: font and color, custom properties for icon color, gap and fade, and the text and icon parts."
 ---
 
-# Styling
+# Styling the loader
 
 By default, fun-loader follows the surrounding text: same font, size and color. Style it like any inline element:
 

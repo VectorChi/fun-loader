@@ -3,7 +3,7 @@ title: "All options: theme, icon, interval, stages"
 description: "Every fun-loader option (theme, icon, interval, ordered, paused, label, messages, stages) with types, defaults and attribute behavior."
 ---
 
-# Options
+# Options reference
 
 Every option works as an HTML attribute, as a JavaScript property, and as a prop on the React and Vue components. `messages` and `stages` are the exceptions: they're properties and props only, because attributes can't hold a list.
 

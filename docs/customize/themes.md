@@ -3,7 +3,7 @@ title: "Themes: 8 built-in sets of loading messages"
 description: "All 8 built-in fun-loader themes, from thinking and dev to finance and transfer, with every message and what each suits."
 ---
 
-# Themes
+# Built-in themes
 
 Pick a theme with `theme="…"`. Each has 12 to 13 messages, shuffled so every one shows before any repeats (add `ordered` to keep the written order). On long waits, the messages change: see [Long waits](#long-waits).
 

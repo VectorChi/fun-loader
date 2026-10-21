@@ -3,7 +3,7 @@ title: "Animated loading icons: spinner, dots and more"
 description: "The fun-loader icons (spinner, dots, bars, pulse, sparkle or none), with live examples and how to size and color them."
 ---
 
-# Icons
+# Animated icons
 
 An animated icon sits before the text. Pick one with `icon="…"`.
 

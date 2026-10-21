@@ -3,7 +3,7 @@ title: "API reference: element, themes and helpers"
 description: "The fun-loader API: element members, stages, registerTheme, getTheme, define, defineAll, the exported themes, constants and types."
 ---
 
-# API
+# API reference
 
 ## The element
 
