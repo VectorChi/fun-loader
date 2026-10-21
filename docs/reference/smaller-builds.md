@@ -4,9 +4,9 @@ description: "Load only the fun-loader element and the themes you need, and regi
 
 # Smaller builds
 
-The main import includes all 8 themes, about 2.9 kB in total. If you only need one or two themes, you can load less.
+The main import includes all 8 themes, 4.0 kB in total. If you only need one or two themes, you can load less.
 
-`@vectorchi/fun-loader/element` is the element alone, about 1.7 kB, with no themes and nothing registered. Add only what you use:
+`@vectorchi/fun-loader/element` is the element alone, 2.0 kB, with no themes and nothing registered. Add only what you use:
 
 ```js
 import { define, registerTheme } from '@vectorchi/fun-loader/element';
@@ -36,4 +36,4 @@ define('ai-loader');
 
 ## When it's worth it
 
-Rarely. The difference is about 1.2 kB, roughly the size of a small icon. Use the main import unless every kilobyte counts.
+Sometimes. The difference is about 2 kB, roughly the size of a small icon. Use the main import unless every kilobyte counts.

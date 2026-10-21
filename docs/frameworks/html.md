@@ -17,7 +17,7 @@ Load the script once, then use the tag anywhere:
 Every [option](/reference/options) except `messages` is an attribute. On/off options are on when present:
 
 ```html
-<fun-loader theme="dev" shuffle paused></fun-loader>
+<fun-loader theme="dev" ordered paused></fun-loader>
 ```
 
 ## From JavaScript

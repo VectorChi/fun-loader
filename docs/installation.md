@@ -42,10 +42,10 @@ unpkg works too: `https://unpkg.com/@vectorchi/fun-loader@0.3`.
 
 | Import | What it is | Size |
 | --- | --- | --- |
-| `@vectorchi/fun-loader` | The element and all themes, registered automatically | ~2.9 kB |
-| `@vectorchi/fun-loader/react` | React component | ~3.0 kB |
-| `@vectorchi/fun-loader/vue` | Vue component | ~2.9 kB |
-| `@vectorchi/fun-loader/element` | The element only, nothing registered | ~1.7 kB |
-| `@vectorchi/fun-loader/themes/<name>` | A single theme | tiny |
+| `@vectorchi/fun-loader` | The element and all themes, registered automatically | 4.0 kB |
+| `@vectorchi/fun-loader/react` | React component | 4.1 kB |
+| `@vectorchi/fun-loader/vue` | Vue component | 4.0 kB |
+| `@vectorchi/fun-loader/element` | The element only, nothing registered | 2.0 kB |
+| `@vectorchi/fun-loader/themes/<name>` | A single theme, with its long-wait lines | up to 0.6 kB |
 
 Sizes are minified and compressed, excluding React and Vue themselves. You only ever load one of the first four. See [Smaller builds](/reference/smaller-builds) for the last two.

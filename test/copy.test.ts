@@ -102,3 +102,20 @@ describe('theme copy', () => {
     }
   });
 });
+
+describe('themes docs page', () => {
+  it('lists exactly the messages each theme ships', async () => {
+    const { default: page } = await import('../docs/customize/themes.md?raw');
+    for (const t of all) {
+      expect(page, t.name).toContain(`::: details ${t.name}\n${t.messages.join(' · ')}\n:::`);
+    }
+    expect(page).toContain(LONG_WAIT.join(' · '));
+    expect(page).toContain(VERY_LONG_WAIT.join(' · '));
+    for (const name of ['finance', 'transfer', 'calm']) {
+      const [, long, veryLong] = all.find((t) => t.name === name)?.stages ?? [];
+      expect(page, name).toContain(
+        `${long?.messages.join(' · ')}\n\n${veryLong?.messages.join(' · ')}`,
+      );
+    }
+  });
+});

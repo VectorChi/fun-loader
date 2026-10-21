@@ -1,5 +1,5 @@
 ---
-description: "The fun-loader API: element members, registerTheme, getTheme, define, defineAll, the exported themes, constants and types."
+description: "The fun-loader API: element members, stages, registerTheme, getTheme, define, defineAll, the exported themes, constants and types."
 ---
 
 # API
@@ -11,6 +11,7 @@ description: "The fun-loader API: element members, registerTheme, getTheme, defi
 | Member | Description |
 | --- | --- |
 | `current` | The message on screen (read-only). |
+| `stage` | The index of the current [stage](/reference/options#stages), starting at 0 (read-only). |
 | `next()` | Shows the next message now. The regular timer keeps going. |
 
 ## `@vectorchi/fun-loader`
@@ -19,19 +20,33 @@ Importing this registers `<fun-loader>` and every built-in theme.
 
 ### `registerTheme(theme)`
 
-Adds a theme, or replaces one with the same name.
+Adds a theme, or replaces one with the same name. Give it `stages` to make it change with the wait, or only `messages` for a theme that never changes.
 
 ```ts
 registerTheme({ name: 'pirate', messages: ['Hoisting the sails…', 'Consulting the map…'] });
 ```
 
-### `getTheme(name)`
+### `staged(messages, long?, veryLong?)`
 
-Returns a registered theme's messages, or `undefined`.
+Builds the three stages every built-in theme uses: your `messages` first, then the shared long-wait lines after 8 seconds and after 20 seconds. Pass your own lists as `long` and `veryLong` to replace the shared ones.
 
 ```ts
-getTheme('dev'); // ['Compiling thoughts…', 'Resolving dependencies…', …]
+registerTheme({ name: 'pirate', messages, stages: staged(messages) });
 ```
+
+`LONG_WAIT` and `VERY_LONG_WAIT` are the shared lists themselves.
+
+### `getTheme(name)`
+
+Returns a registered theme's first-stage messages, or `undefined`.
+
+```ts
+getTheme('dev'); // ['Asking the rubber duck…', 'Reading the stack trace twice…', …]
+```
+
+### `getThemeStages(name)`
+
+Returns all of a registered theme's stages, or `undefined`.
 
 ### `define(tag?)`
 
@@ -47,11 +62,11 @@ define('ai-loader'); // now <ai-loader> works too
 
 ### Themes
 
-`thinking`, `dev`, `design`, `art`, `kitchen`, `finance`, `transfer` and `calm` are each exported as `{ name, messages }`:
+`thinking`, `dev`, `design`, `art`, `kitchen`, `finance`, `transfer` and `calm` are each exported as `{ name, messages, stages }`:
 
 ```ts
 import { finance } from '@vectorchi/fun-loader';
-finance.messages.length; // 12
+finance.stages.length; // 3
 ```
 
 ### Constants
@@ -68,7 +83,8 @@ finance.messages.length; // 12
 | Export | Description |
 | --- | --- |
 | `FunLoader` | The element class. Also its type, for refs. |
-| `FunLoaderTheme` | `{ name: string; messages: readonly string[] }` |
+| `FunLoaderTheme` | `{ name: string; messages: readonly string[]; stages?: readonly FunLoaderStage[] }` |
+| `FunLoaderStage` | `{ after: number; messages: readonly string[] }`: `after` is milliseconds of waiting. |
 | `FunLoaderIcon` | One of the `ICONS` names. |
 
 ## `@vectorchi/fun-loader/react`
@@ -90,4 +106,4 @@ See [Vue](/frameworks/vue).
 
 ## `@vectorchi/fun-loader/element`
 
-The element without themes, and nothing registered. Exports everything from the main entry except the themes and `defineAll`. See [Smaller builds](/reference/smaller-builds).
+The element without themes, and nothing registered. Exports everything from the main entry except the themes, `staged`, the shared long-wait lists and `defineAll`. See [Smaller builds](/reference/smaller-builds).

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import type { FunLoaderStage } from '../../../src/element';
 
 const ready = ref(false);
 const themes = ref<string[]>([]);
@@ -14,6 +15,31 @@ const size = ref(16);
 const color = ref('#7c5cff');
 const custom = ref('Wrangling tokens…\nAsking nicely…\nPolishing the answer…');
 const customLoader = ref<(HTMLElement & { next(): void }) | null>(null);
+
+// "Simulate a long request": scale every theme's stage timings by the chosen speed and
+// restart the loaders, so the stage changes are quick to watch.
+const SPEEDS = [1, 4, 10];
+const speed = ref(1);
+const run = ref(0);
+const waited = ref(0);
+const stageByTheme = ref<Record<string, number>>({});
+const grid = ref<HTMLElement | null>(null);
+let getStages: (name: string) => readonly FunLoaderStage[] | undefined = () => undefined;
+const scaledStages = computed(() => {
+  const out: Record<string, FunLoaderStage[] | undefined> = {};
+  for (const name of themes.value) {
+    out[name] = getStages(name)?.map((s) => ({ ...s, after: s.after / speed.value }));
+  }
+  return out;
+});
+const scaledInterval = computed(() => Math.max(250, Math.round(interval.value / speed.value)));
+function restart(): void {
+  run.value++;
+  waited.value = 0;
+}
+watch(speed, restart);
+let tick: ReturnType<typeof setInterval> | undefined;
+let last = 0;
 
 const messages = computed(() =>
   custom.value
@@ -34,9 +60,25 @@ onMounted(async () => {
   const themeModule = await import('../../../src/themes');
   themes.value = Object.values(themeModule).map((theme) => theme.name);
   icons.value = lib.ICONS;
+  getStages = lib.getThemeStages;
   await customElements.whenDefined('fun-loader');
   ready.value = true;
+  // Track the simulated wait (frozen while paused, like the element's clock) and each card's stage.
+  last = Date.now();
+  tick = setInterval(() => {
+    const now = Date.now();
+    if (!paused.value) waited.value += (now - last) * speed.value;
+    last = now;
+    const stages: Record<string, number> = {};
+    for (const el of grid.value?.querySelectorAll<HTMLElement & { stage: number; theme: string }>(
+      'fun-loader',
+    ) ?? []) {
+      stages[el.theme] = el.stage;
+    }
+    stageByTheme.value = stages;
+  }, 200);
 });
+onBeforeUnmount(() => clearInterval(tick));
 </script>
 
 <template>
@@ -55,10 +97,38 @@ onMounted(async () => {
       <label>Icon color <input v-model="color" type="color" /></label>
     </div>
 
-    <div v-if="ready" class="pg-grid" :style="style">
+    <div class="pg-controls pg-sim">
+      <span class="pg-sim-title">Simulate a long request</span>
+      <div class="pg-speeds" role="group" aria-label="Speed">
+        <button
+          v-for="s in SPEEDS"
+          :key="s"
+          type="button"
+          :class="{ active: speed === s }"
+          :aria-pressed="speed === s"
+          @click="speed = s"
+        >
+          {{ s }}×
+        </button>
+      </div>
+      <button type="button" class="pg-restart" @click="restart">Restart</button>
+      <span class="pg-waited">
+        Waited <strong>{{ (waited / 1000).toFixed(1) }} s</strong>. Messages change at 8 s and 20 s.
+      </span>
+    </div>
+
+    <div v-if="ready" ref="grid" class="pg-grid" :style="style">
       <div v-for="name in themes" :key="name" class="pg-card">
-        <span class="demo-label">{{ name }}</span>
-        <fun-loader :theme="name" :icon="icon" :interval="interval" :ordered="ordered" :paused="paused" />
+        <span class="demo-label">{{ name }} · stage {{ stageByTheme[name] ?? 0 }}</span>
+        <fun-loader
+          :key="`${name}-${run}`"
+          :theme="name"
+          :stages="scaledStages[name]"
+          :icon="icon"
+          :interval="scaledInterval"
+          :ordered="ordered"
+          :paused="paused"
+        />
       </div>
     </div>
 
@@ -99,6 +169,42 @@ onMounted(async () => {
   padding: 2px 6px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
+}
+.pg-sim {
+  margin-top: 12px;
+  align-items: center;
+}
+.pg-sim-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.pg-speeds {
+  display: inline-flex;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pg-speeds button {
+  padding: 2px 12px;
+  font-size: 13px;
+}
+.pg-speeds button + button {
+  border-left: 1px solid var(--vp-c-divider);
+}
+.pg-speeds button.active {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+.pg-restart {
+  padding: 2px 10px;
+  font-size: 13px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+}
+.pg-waited {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
 }
 .pg-grid {
   display: grid;

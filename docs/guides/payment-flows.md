@@ -20,13 +20,16 @@ People are anxious while their money is moving. The `transfer` theme is written 
 
 The `pulse` icon and a slower `interval` make it feel steadier than the default spinner.
 
-## When your flow has real stages
+## Long waits
 
-If your backend reports real progress, show messages that match it instead of the theme:
+Transfers can stall for a while. After 8 seconds of waiting, `transfer` moves to lines like "This can take a little longer…", and after 20 seconds to "Thank you for bearing with us…". They acknowledge the wait without promising it's nearly over. See [Long waits](/customize/themes#long-waits) for the full lists.
+
+## When your flow has real steps
+
+If your backend reports what it's actually doing, show that instead of the theme. Give each step a single message: one message never rotates, the icon keeps moving, and your own `messages` never switch to the long-wait lines.
 
 ```js
 const loader = document.querySelector('fun-loader');
-loader.paused = true; // you decide when the message changes
 
 loader.messages = ['Checking your balance…'];
 await checkBalance();
@@ -35,8 +38,8 @@ loader.messages = ['Sending to the bank…'];
 await submitTransfer();
 ```
 
-Setting `messages` shows the first message right away. With `paused`, the text stays put until you change it, while the icon keeps showing that work is happening.
+Setting `messages` shows the new message right away.
 
 ::: tip
-`paused` also stops the icon. If you want the icon to keep moving, leave `paused` off and give each step a single message instead. A list with one message never rotates.
+Don't confuse real steps with [stages](/reference/options#stages). Stages change the messages with *time*, which is right when you don't know what the backend is doing. When you do know, use `messages` as above.
 :::

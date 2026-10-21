@@ -3,14 +3,15 @@
 [![npm](https://img.shields.io/npm/v/@vectorchi/fun-loader)](https://www.npmjs.com/package/@vectorchi/fun-loader)
 [![license](https://img.shields.io/npm/l/@vectorchi/fun-loader)](LICENSE)
 
-Playful, rotating loading text for AI requests and other slow tasks. Instead of a bare spinner, show "Connecting the dots…", "Compiling thoughts…" or "Crunching the numbers…".
+Playful, rotating loading text for AI requests and other slow tasks. Instead of a bare spinner, show "Opening a few mental tabs…", and when the wait drags on, lines that admit it instead of looping the same jokes.
 
 ![Four loaders rotating their messages, each with a different theme and icon](https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/demo.gif)
 
 **[Documentation and live examples →](https://vectorchi.github.io/fun-loader/)**
 
 - **One tag, any stack:** a standard web component that works in plain HTML, React, Next.js and Vue.
-- **About 3 kB** minified and compressed, with every theme included. No dependencies.
+- **Wait-aware:** after 8 and 20 seconds the messages change to ones that acknowledge the longer wait, without faking progress.
+- **4.0 kB** minified and compressed, with every theme included. No dependencies.
 - **8 themes and 5 animated icons**, or your own messages.
 - **Accessible:** screen readers hear one short label, not every rotating message, and it respects reduced-motion settings.
 
@@ -59,7 +60,7 @@ import { FunLoader } from '@vectorchi/fun-loader/vue';
 </script>
 
 <template>
-  <FunLoader v-if="loading" theme="dev" shuffle />
+  <FunLoader v-if="loading" theme="dev" />
 </template>
 ```
 
