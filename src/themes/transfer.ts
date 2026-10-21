@@ -3,17 +3,17 @@ import { staged } from './stages';
 
 const messages = [
   'Preparing your transfer…',
-  'Checking the details…',
-  'Talking to the bank…',
-  'Moving your money…',
-  'Counting every cent…',
+  'Working on your transfer…',
+  'Your transfer is in progress…',
+  'Handling this with care…',
+  'Taking care of the details…',
   'Getting the paperwork in order…',
-  'Double-checking everything…',
+  'Processing, step by step…',
   'This can take a few seconds…',
   'Still working on it…',
-  'Wrapping things up…',
-  'Almost there…',
-  'Hang tight…',
+  'One moment, please…',
+  'Stay with us a moment…',
+  'Moving at a careful pace…',
 ];
 
 export const transfer: FunLoaderTheme = {

@@ -2,18 +2,19 @@ import type { FunLoaderTheme } from '../element';
 import { staged } from './stages';
 
 const messages = [
-  'Take a breath…',
-  'Settling in…',
+  'Take a slow breath…',
+  'Letting the tea steep…',
+  'Watching the clouds drift…',
+  'Listening to the rain…',
+  'Unclenching the shoulders…',
+  'Settling into the moment…',
   'Letting it unfold…',
-  'Steeping slowly…',
   'Finding the quiet…',
-  'Gathering thoughts…',
+  'Following the tide out…',
+  'Counting slow breaths…',
   'One moment at a time…',
-  'Drifting toward an answer…',
-  'Watching the clouds…',
-  'Easing into it…',
-  'Nearly there…',
   'All in good time…',
+  'Resting in the in-between…',
 ];
 
 export const calm: FunLoaderTheme = {

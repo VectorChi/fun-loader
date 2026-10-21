@@ -14,5 +14,6 @@
     "Render the loader only while waiting and remove it when the result arrives; removing it stops its timer. For streamed responses, remove it when the first chunk arrives.",
     "For payment or money-transfer flows use theme=\"transfer\", and don't write custom messages that claim backend steps that aren't actually happening.",
     "Set label to describe the wait for screen readers (default \"Loading\"); the rotating text itself is hidden from them."
-  ]
+  ],
+  "excludeFiles": ["copy-review.md"]
 }

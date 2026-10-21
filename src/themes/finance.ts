@@ -2,18 +2,19 @@ import type { FunLoaderTheme } from '../element';
 import { staged } from './stages';
 
 const messages = [
-  'Crunching the numbers…',
-  'Balancing the books…',
-  'Reconciling accounts…',
-  'Checking the ledger…',
-  'Compounding interest…',
-  'Consulting the spreadsheets…',
-  'Auditing the decimals…',
-  'Reading the market…',
-  'Diversifying thoughts…',
-  'Rounding to the nearest cent…',
-  'Calculating returns…',
-  'Closing the quarter…',
+  'Reconciling the ledger…',
+  'Hunting a stray decimal…',
+  'Carrying the one…',
+  'Freezing the top row…',
+  'Widening column B…',
+  'Rounding, but responsibly…',
+  'Checking it adds up twice…',
+  'Tidying the pivot table…',
+  'Reading the footnotes…',
+  'Lining up the quarters…',
+  'Color-coding the cells…',
+  'Summing the summaries…',
+  'Sorting receipts by date…',
 ];
 
 export const finance: FunLoaderTheme = {
@@ -34,7 +35,7 @@ export const finance: FunLoaderTheme = {
       'A big report takes a while…',
       'Still working through it…',
       'Accuracy over speed…',
-      'Still crunching, carefully…',
+      'Still counting, carefully…',
     ],
   ),
 };

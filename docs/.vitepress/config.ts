@@ -15,6 +15,7 @@ type VitePlugin = NonNullable<NonNullable<UserConfig['vite']>['plugins']>[number
 const llms = llmstxt({
   domain: 'https://vectorchi.github.io',
   excludeIndexPage: false,
+  ignoreFiles: ['copy-review.md'],
   details: [
     'fun-loader is a ~3 kB web component, `<fun-loader>`, that shows rotating, playful loading messages with an animated icon while an AI/LLM request or other slow task runs. No dependencies.',
     '',
@@ -34,6 +35,8 @@ export default defineConfig({
   description,
   base: '/fun-loader/',
   cleanUrls: true,
+  // Internal review notes, not a docs page.
+  srcExclude: ['copy-review.md'],
   lastUpdated: true,
   sitemap: { hostname: site },
   head: [

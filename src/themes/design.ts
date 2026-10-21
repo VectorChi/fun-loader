@@ -2,18 +2,19 @@ import type { FunLoaderTheme } from '../element';
 import { staged } from './stages';
 
 const messages = [
-  'Nudging pixels…',
-  'Kerning the letters…',
-  'Picking a palette…',
-  'Aligning to the grid…',
-  'Adding whitespace…',
-  'Rounding the corners…',
-  'Choosing a font…',
-  'Balancing the layout…',
-  'Adjusting the contrast…',
-  'Sketching ideas…',
-  'Removing one more thing…',
-  'Making it pop…',
+  'Nudging it two pixels left…',
+  'Kerning by eye…',
+  'Squinting at the contrast…',
+  'Swapping the blues around…',
+  'Trying it in dark mode…',
+  'Adding a bit more padding…',
+  'Aligning the invisible grid…',
+  'Bargaining with the font size…',
+  'Hiding the hamburger menu…',
+  'Removing one more border…',
+  'Picking the less purple purple…',
+  'Zooming in way too close…',
+  'Moving the logo back…',
 ];
 
 export const design: FunLoaderTheme = { name: 'design', messages, stages: staged(messages) };

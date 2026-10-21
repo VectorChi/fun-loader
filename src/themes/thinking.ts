@@ -2,18 +2,19 @@ import type { FunLoaderTheme } from '../element';
 import { staged } from './stages';
 
 const messages = [
-  'Thinking…',
-  'Connecting the dots…',
-  'Consulting the neurons…',
-  'Pondering deeply…',
-  'Untangling thoughts…',
-  'Weighing the options…',
-  'Having a little think…',
-  'Chasing a hunch…',
-  'Following a train of thought…',
-  'Brewing ideas…',
-  'Rummaging through memory…',
-  'Almost had it…',
+  'Opening a few mental tabs…',
+  'Rereading your question…',
+  'Sketching the answer in pencil…',
+  'Drafting, deleting, redrafting…',
+  'Looking at it upside down…',
+  'Pacing around the problem…',
+  'Weeding out the fast answers…',
+  'Checking the fine print…',
+  'Chewing on the details…',
+  'Cross-referencing a hunch…',
+  'Lining up the arguments…',
+  'Picking the best words…',
+  'Untangling your question…',
 ];
 
 export const thinking: FunLoaderTheme = { name: 'thinking', messages, stages: staged(messages) };

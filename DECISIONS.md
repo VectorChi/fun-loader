@@ -50,3 +50,17 @@ Setting `el.shuffle = false` sets `ordered`. In the wrappers, `ordered` wins whe
 
 **The shuffle bag never repeats the message on screen, but a reset starts clean.**
 Every message in a stage shows once before any repeats, and the first message of a new bag is never the one on screen. That rule applies to natural advances (rotation, reshuffles, stage switches). When an option changes (`messages`, `stages`, `theme`, `ordered`), the element starts clean, so turning on `ordered` always begins at the first written message.
+
+## Copy and size (0.4.0)
+
+**The main entry lands at 3.96 kB: inside the 4.0 kB hard limit, over the 3.6 kB target.**
+The audited lines are more varied than the old ones, so they compress worse (about +0.23 kB for a similar line count). The size config now enforces 4 kB for the main entry (it allowed 5 kB before).
+
+**Copy is stored as plain string arrays, not delimited strings.**
+Measured on all 145 lines: one delimited string per list saves -6 to 18 bytes compressed, because brotli already removes almost all of the array syntax. Not worth less readable source.
+
+**`art` keeps the list chosen by hand before the audit.**
+Two of its lines reference well-known phrases and are flagged in `docs/copy-review.md` for a decision before release.
+
+**`docs/copy-review.md` is kept out of the published site, `llms.txt` and Context7.**
+It is a review document, not documentation.

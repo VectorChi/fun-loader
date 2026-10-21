@@ -3,17 +3,18 @@ import { staged } from './stages';
 
 const messages = [
   'Preheating the oven…',
-  'Chopping the onions…',
-  'Simmering gently…',
-  'Seasoning to taste…',
-  'Whisking vigorously…',
+  'Crying over the onions…',
+  'Softening the butter…',
+  'Hunting for the good whisk…',
+  'Reading the recipe backwards…',
   'Letting the dough rise…',
-  'Stirring the pot…',
   'Reducing the sauce…',
-  'Tasting as we go…',
-  'Plating it up…',
-  'Adding a pinch of salt…',
-  'Garnishing…',
+  'Seasoning to taste…',
+  'Licking the spoon, for science…',
+  'Tasting it one more time…',
+  'Adding a pinch more salt…',
+  'Plating with tweezers…',
+  'Wiping the rim of the plate…',
 ];
 
 export const kitchen: FunLoaderTheme = { name: 'kitchen', messages, stages: staged(messages) };
