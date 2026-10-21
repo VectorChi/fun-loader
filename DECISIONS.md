@@ -82,3 +82,6 @@ Screenshots of the landing page at 1280x800 and 390x844 both show all six live l
 Minifiers don't shorten property names, so the element's private members (`_elapsed`, `_stageTimer` and so on) shipped at full length. Mangling them saved 0.08 kB on the main entry. Rules this depends on:
 - Only the element's private members may start with `_`. Public API and anything read from outside the bundle must not.
 - The mangled names are set on a real DOM element, so they must never collide with built-in properties such as `id` or `title`. With fewer than 52 private members, esbuild uses single letters, and no standard `HTMLElement` property is a single letter. If the element ever grows past that, reserve DOM names or switch to `#private` fields.
+
+**The main entry keeps every theme; a smaller default-theme-only entry was tried and dropped.**
+Registering only `thinking` in the main entry, with a new `/all` entry for the rest, brought it to 2.42 kB. It was reverted because it is a silent breaking change: after upgrading, `theme="dev"` would quietly fall back to the default messages unless every app added an import. The main entry stays at 3.88 kB, inside the 4.0 kB hard limit and 0.28 kB over the 3.6 kB target. Apps that want less can already import `/element` plus single themes (see Smaller builds).

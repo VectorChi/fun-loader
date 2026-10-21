@@ -17,7 +17,7 @@ const llms = llmstxt({
   excludeIndexPage: false,
   ignoreFiles: ['copy-review.md'],
   details: [
-    'fun-loader is a 4 kB web component, `<fun-loader>`, that shows rotating, playful loading messages with an animated icon while an AI/LLM request or other slow task runs. No dependencies.',
+    'fun-loader is a 3.9 kB web component, `<fun-loader>`, that shows rotating, playful loading messages with an animated icon while an AI/LLM request or other slow task runs. No dependencies.',
     '',
     '- Long waits: every theme changes its messages after 8 s and 20 s of active (unpaused) waiting, to lines that acknowledge the wait without faking progress.',
     '- When to use: open-ended waits of a few seconds or more (LLM responses, image generation, reports, payments). For waits under a second a plain spinner is enough; for known progress such as uploads, use a progress bar.',

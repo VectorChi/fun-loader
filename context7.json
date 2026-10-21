@@ -1,7 +1,7 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "fun-loader",
-  "description": "A small web component, <fun-loader>, that shows rotating loading messages with an animated icon while an AI/LLM request or other slow task runs. Includes 8 themes, 5 icons, custom messages, and React and Vue wrappers. Messages change as the wait grows. About 4 kB, no dependencies. Published on npm as @vectorchi/fun-loader.",
+  "description": "A small web component, <fun-loader>, that shows rotating loading messages with an animated icon while an AI/LLM request or other slow task runs. Includes 8 themes, 5 icons, custom messages, and React and Vue wrappers. Messages change as the wait grows. About 3.9 kB, no dependencies. Published on npm as @vectorchi/fun-loader.",
   "branch": "main",
   "folders": ["docs"],
   "excludeFolders": ["docs/.vitepress"],

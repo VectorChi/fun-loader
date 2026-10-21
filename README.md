@@ -11,7 +11,7 @@ Playful, rotating loading text for AI requests and other slow tasks. Instead of 
 
 - **One tag, any stack:** a standard web component that works in plain HTML, React, Next.js and Vue.
 - **Wait-aware:** after 8 and 20 seconds the messages change to ones that acknowledge the longer wait, without faking progress.
-- **4.0 kB** minified and compressed, with every theme included. No dependencies.
+- **3.9 kB** minified and compressed, with every theme included. No dependencies.
 - **8 themes and 5 animated icons**, or your own messages.
 - **Accessible:** screen readers hear one short label, not every rotating message, and it respects reduced-motion settings.
 

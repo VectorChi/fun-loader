@@ -22,7 +22,7 @@ All notable changes to `@vectorchi/fun-loader`. Until 1.0, a minor version (0.x)
 - **Shuffle is the default.** Each stage is a shuffle bag: every message shows once before any repeats, and the same message never shows twice in a row, including across reshuffles and stage changes.
 - **All theme copy is rewritten** to be more specific and less cliché, with 12 or 13 lines per theme. Lines like "Connecting the dots…" and "Crunching the numbers…" are gone, and so are the fake-progress lines in `transfer` and `calm` ("Almost there…", "Nearly there…"). See `docs/copy-review.md` for old and new side by side.
 - The `messages` getter returns the current stage's messages.
-- Size: the main entry is 4.0 kB minified and compressed (was 2.9 kB), and the element alone is 2.0 kB (was 1.7 kB). Most of the increase is the new long-wait copy.
+- Size: the main entry is 3.9 kB minified and compressed (was 2.9 kB), and the element alone is 1.9 kB (was 1.7 kB). Most of the increase is the new long-wait copy.
 
 ### Migration
 
