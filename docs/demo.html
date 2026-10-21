@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>fun-loader demo</title>
+    <!--
+      Recording page for the README clip. Serve the repo root and open /docs/demo.html.
+      It uses the local build, so run `npm run build` first. Stage timings are shortened
+      with the `stages` property so a full cycle, with one stage change, fits in 10 seconds.
+      Add ?record to wait for window.startDemo() instead of starting on load.
+    -->
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        background: #f6f4ef;
+        color: #1a1a1a;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      .stage {
+        width: 720px;
+        box-sizing: border-box;
+        padding: 32px 36px 28px;
+      }
+      .cards {
+        display: grid;
+        gap: 14px;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 16px 20px;
+        background: #fffdf9;
+        border: 1.5px solid #1a1a1a;
+        border-radius: 12px;
+      }
+      .name {
+        font: 600 12px/1 ui-monospace, "SF Mono", Menlo, monospace;
+        letter-spacing: 0.04em;
+        color: #6b675e;
+      }
+      fun-loader {
+        font-size: 22px;
+        --fun-loader-icon-color: #6a4cf5;
+        --fun-loader-fade: 350ms;
+      }
+      .caption {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 18px;
+        font-size: 14px;
+        color: #6b675e;
+      }
+      .caption span {
+        padding: 4px 10px;
+        border: 1.5px solid #c9c4b8;
+        border-radius: 999px;
+        transition: all 200ms;
+      }
+      .caption span.on {
+        border-color: #1a1a1a;
+        background: #1a1a1a;
+        color: #f6f4ef;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" id="stage">
+      <div class="cards" id="cards"></div>
+      <div class="caption" aria-hidden="true">
+        <span id="cap0" class="on">The wait starts</span>
+        <span>→</span>
+        <span id="cap1">The wait runs long</span>
+      </div>
+    </div>
+    <script src="../dist/fun-loader.iife.js"></script>
+    <script>
+      const { getThemeStages } = window.FunLoader;
+      // Stage 1 arrives at 5 s here instead of 8 s, so it is visible within a 10 s loop.
+      const SWITCH_AT = 5000;
+      const DEMO = [
+        { theme: 'thinking', icon: 'spinner' },
+        { theme: 'dev', icon: 'dots' },
+        { theme: 'transfer', icon: 'pulse' },
+      ];
+
+      window.startDemo = () => {
+        const cards = document.getElementById('cards');
+        cards.replaceChildren();
+        for (const [i, { theme, icon }] of DEMO.entries()) {
+          const [first, long] = getThemeStages(theme);
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `<span class="name">theme="${theme}"</span>`;
+          const loader = document.createElement('fun-loader');
+          loader.icon = icon;
+          loader.interval = 1100;
+          loader.ordered = true;
+          loader.stages = [
+            { after: 0, messages: first.messages },
+            // Themes can share long-wait lines; start each card at a different one.
+            { after: SWITCH_AT, messages: [...long.messages.slice(i * 3), ...long.messages.slice(0, i * 3)] },
+          ];
+          card.append(loader);
+          cards.append(card);
+        }
+        const loader = cards.querySelector('fun-loader');
+        const cap0 = document.getElementById('cap0');
+        const cap1 = document.getElementById('cap1');
+        setInterval(() => {
+          cap0.classList.toggle('on', loader.stage === 0);
+          cap1.classList.toggle('on', loader.stage === 1);
+        }, 50);
+      };
+
+      if (!location.search.includes('record')) window.startDemo();
+    </script>
+  </body>
+</html>

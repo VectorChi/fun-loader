@@ -5,7 +5,7 @@
 
 Playful, rotating loading text for AI requests and other slow tasks. Instead of a bare spinner, show "Opening a few mental tabs…", and when the wait drags on, lines that admit it instead of looping the same jokes.
 
-![Four loaders rotating their messages, each with a different theme and icon](https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/demo.gif)
+![Three loaders rotating their messages, then switching to lines that acknowledge a long wait](https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/demo.gif)
 
 **[Documentation and live examples →](https://vectorchi.github.io/fun-loader/)**
 
