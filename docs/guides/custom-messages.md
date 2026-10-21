@@ -1,4 +1,5 @@
 ---
+title: "Write custom loading messages and themes"
 description: "Write your own loading messages for one loader or register a reusable theme, with tips for messages that read well."
 ---
 

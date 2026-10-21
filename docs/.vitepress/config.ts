@@ -105,7 +105,7 @@ export default defineConfig({
     const article = {
       '@context': 'https://schema.org',
       '@type': 'TechArticle',
-      headline: title,
+      headline: pageData.title || title,
       description,
       url,
       image,

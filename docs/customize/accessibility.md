@@ -1,4 +1,5 @@
 ---
+title: "Accessible loading text for screen readers"
 description: "How fun-loader works with screen readers and reduced-motion settings, and how to set a helpful label."
 ---
 

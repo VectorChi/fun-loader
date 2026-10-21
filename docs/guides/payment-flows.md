@@ -1,4 +1,5 @@
 ---
+title: "Loading messages for payment flows"
 description: "Use the calm transfer theme for money transfers, and show real progress steps without misleading users."
 ---
 

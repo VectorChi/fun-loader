@@ -1,4 +1,5 @@
 ---
+title: "Playground: try every theme, icon and option"
 description: "Try every fun-loader theme, icon and option live, watch the messages change on a long wait, and copy the markup for your settings."
 aside: false
 ---

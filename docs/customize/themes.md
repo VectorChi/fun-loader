@@ -1,4 +1,5 @@
 ---
+title: "Themes: 8 built-in sets of loading messages"
 description: "All 8 built-in fun-loader themes, from thinking and dev to finance and transfer, with every message and what each suits."
 ---
 

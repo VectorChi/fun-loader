@@ -1,4 +1,5 @@
 ---
+title: "All options: theme, icon, interval, stages"
 description: "Every fun-loader option (theme, icon, interval, ordered, paused, label, messages, stages) with types, defaults and attribute behavior."
 ---
 

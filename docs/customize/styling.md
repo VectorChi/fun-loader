@@ -1,4 +1,5 @@
 ---
+title: "Style the loader with CSS custom properties"
 description: "Style fun-loader with CSS: font and color, custom properties for icon color, gap and fade, and the text and icon parts."
 ---
 

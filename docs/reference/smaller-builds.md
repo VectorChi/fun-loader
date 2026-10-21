@@ -1,4 +1,5 @@
 ---
+title: "Smaller builds: load only the themes you use"
 description: "Load only the fun-loader element and the themes you need, and register it under a different tag name."
 ---
 
