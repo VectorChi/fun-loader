@@ -13,47 +13,61 @@
           "customElement": true,
           "summary": "Rotating, playful loading messages with an animated icon.",
           "description": "Shows rotating loading messages from a theme or your own list, with an animated icon, while an AI request or other slow task runs. Screen readers announce `label` once; the rotating text and icon are hidden from them.",
-          "superclass": { "name": "HTMLElement" },
+          "superclass": {
+            "name": "HTMLElement"
+          },
           "attributes": [
             {
               "name": "theme",
               "fieldName": "theme",
-              "type": { "text": "string" },
+              "type": {
+                "text": "string"
+              },
               "default": "\"thinking\"",
               "description": "Built-in theme (thinking, dev, design, art, kitchen, finance, transfer, calm) or one registered with registerTheme()."
             },
             {
               "name": "icon",
               "fieldName": "icon",
-              "type": { "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'none'" },
+              "type": {
+                "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'none'"
+              },
               "default": "\"spinner\"",
               "description": "Animated icon shown before the text. Unknown names fall back to spinner."
             },
             {
               "name": "interval",
               "fieldName": "interval",
-              "type": { "text": "number" },
+              "type": {
+                "text": "number"
+              },
               "default": "2400",
               "description": "Milliseconds between messages. Values below 250 become 250."
             },
             {
-              "name": "shuffle",
-              "fieldName": "shuffle",
-              "type": { "text": "boolean" },
+              "name": "ordered",
+              "fieldName": "ordered",
+              "type": {
+                "text": "boolean"
+              },
               "default": "false",
-              "description": "Show messages in random order, never the same one twice in a row."
+              "description": "Show messages in the order written. By default each stage is shuffled, and every message shows once before any repeats."
             },
             {
               "name": "paused",
               "fieldName": "paused",
-              "type": { "text": "boolean" },
+              "type": {
+                "text": "boolean"
+              },
               "default": "false",
               "description": "Stop rotating the text and animating the icon."
             },
             {
               "name": "label",
               "fieldName": "label",
-              "type": { "text": "string" },
+              "type": {
+                "text": "string"
+              },
               "default": "\"Loading\"",
               "description": "Text announced to screen readers."
             }
@@ -62,68 +76,121 @@
             {
               "kind": "field",
               "name": "theme",
-              "type": { "text": "string" },
+              "type": {
+                "text": "string"
+              },
               "default": "\"thinking\"",
               "attribute": "theme"
             },
             {
               "kind": "field",
               "name": "icon",
-              "type": { "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'none'" },
+              "type": {
+                "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'none'"
+              },
               "default": "\"spinner\"",
               "attribute": "icon"
             },
             {
               "kind": "field",
               "name": "interval",
-              "type": { "text": "number" },
+              "type": {
+                "text": "number"
+              },
               "default": "2400",
               "attribute": "interval"
             },
             {
               "kind": "field",
-              "name": "shuffle",
-              "type": { "text": "boolean" },
+              "name": "ordered",
+              "type": {
+                "text": "boolean"
+              },
               "default": "false",
-              "attribute": "shuffle"
+              "attribute": "ordered"
+            },
+            {
+              "kind": "field",
+              "name": "shuffle",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Deprecated: the opposite of ordered, kept for code written before 0.4.0. Property only.",
+              "deprecated": "Use ordered instead."
             },
             {
               "kind": "field",
               "name": "paused",
-              "type": { "text": "boolean" },
+              "type": {
+                "text": "boolean"
+              },
               "default": "false",
               "attribute": "paused"
             },
             {
               "kind": "field",
               "name": "label",
-              "type": { "text": "string" },
+              "type": {
+                "text": "string"
+              },
               "default": "\"Loading\"",
               "attribute": "label"
             },
             {
               "kind": "field",
               "name": "messages",
-              "type": { "text": "readonly string[] | null | undefined" },
-              "description": "Your own messages, overriding theme. Property only. Set to null to go back to the theme."
+              "type": {
+                "text": "readonly string[] | null | undefined"
+              },
+              "description": "The messages in rotation now (the current stage). Setting it gives a single stage of your own messages, overriding theme. Property only."
+            },
+            {
+              "kind": "field",
+              "name": "stages",
+              "type": {
+                "text": "readonly { after: number; messages: readonly string[] }[] | null | undefined"
+              },
+              "description": "Message sets that take over as the wait grows: each stage starts `after` ms of active (unpaused) time. Overrides the theme stages; [] or null turns staging off; undefined restores the theme stages. Property only."
             },
             {
               "kind": "field",
               "name": "current",
-              "type": { "text": "string" },
+              "type": {
+                "text": "string"
+              },
               "readonly": true,
               "description": "The message currently on screen."
             },
             {
+              "kind": "field",
+              "name": "stage",
+              "type": {
+                "text": "number"
+              },
+              "readonly": true,
+              "description": "The index of the current stage."
+            },
+            {
               "kind": "method",
               "name": "next",
-              "return": { "type": { "text": "void" } },
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
               "description": "Show the next message immediately."
             }
           ],
           "cssParts": [
-            { "name": "text", "description": "The rotating message." },
-            { "name": "icon", "description": "The animated icon." }
+            {
+              "name": "text",
+              "description": "The rotating message."
+            },
+            {
+              "name": "icon",
+              "description": "The animated icon."
+            }
           ],
           "cssProperties": [
             {
@@ -148,12 +215,18 @@
         {
           "kind": "js",
           "name": "FunLoader",
-          "declaration": { "name": "FunLoader", "module": "dist/element.js" }
+          "declaration": {
+            "name": "FunLoader",
+            "module": "dist/element.js"
+          }
         },
         {
           "kind": "custom-element-definition",
           "name": "fun-loader",
-          "declaration": { "name": "FunLoader", "module": "dist/element.js" }
+          "declaration": {
+            "name": "FunLoader",
+            "module": "dist/element.js"
+          }
         }
       ]
     }

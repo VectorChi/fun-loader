@@ -88,6 +88,24 @@ for (;;) {
 }
 ```
 
+## Long waits
+
+Some requests take a while: a reasoning model, a long document, a busy API. If the same dozen lines keep looping, people notice, and the loop starts to feel like a hang. So the messages change as the wait grows:
+
+- **For the first 8 seconds,** the theme's own lines, shuffled.
+- **After 8 seconds,** lines that acknowledge the wait, such as "This one is taking a while…" or "Bigger job than it looked…".
+- **After 20 seconds,** lines like "Thanks for sticking around…" and "Still here, still working…".
+
+None of them fake progress. There are no percentages, no "almost done" and no countdowns, because the loader can't know how much is left. This happens automatically with every built-in theme; you don't need to do anything.
+
+The clock counts only active waiting: it stands still while the loader is `paused`, and starts over each time a loader is added to the page. So a new request with a new loader always begins at the first stage.
+
+To use your own timings or lines, set `stages` (see [Options](/reference/options#stages)). To turn this off and keep the first set of messages for the whole wait, set `stages = null`:
+
+```tsx
+<FunLoader theme="thinking" stages={null} />
+```
+
 ## Picking a theme
 
 Match the theme to what the user asked for: `dev` for code, `art` for images, `finance` for reports. See all of them on the [Themes](/customize/themes) page.

@@ -9,7 +9,7 @@ import {
   useLayoutEffect,
   useRef,
 } from 'react';
-import type { FunLoader as FunLoaderElement, FunLoaderIcon } from '../element';
+import type { FunLoader as FunLoaderElement, FunLoaderIcon, FunLoaderStage } from '../element';
 import { defineAll } from '../register';
 
 // Called explicitly: a bare side-effect import gets tree-shaken away.
@@ -18,8 +18,13 @@ defineAll();
 export interface FunLoaderProps extends HTMLAttributes<HTMLElement> {
   theme?: string;
   messages?: readonly string[];
+  /** Messages that change as the wait grows. Memoize it: a new array restarts the rotation. */
+  stages?: readonly FunLoaderStage[] | null;
   interval?: number;
   paused?: boolean;
+  /** Show messages in the order written instead of shuffled. */
+  ordered?: boolean;
+  /** @deprecated Shuffling is the default; use `ordered` instead. `shuffle={false}` still means ordered. */
   shuffle?: boolean;
   label?: string;
   icon?: FunLoaderIcon;
@@ -29,7 +34,7 @@ export interface FunLoaderProps extends HTMLAttributes<HTMLElement> {
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 export const FunLoader = forwardRef<FunLoaderElement, FunLoaderProps>(function FunLoader(
-  { theme, messages, interval, paused, shuffle, label, icon, ...rest },
+  { theme, messages, stages, interval, paused, ordered, shuffle, label, icon, ...rest },
   ref,
 ) {
   const el = useRef<FunLoaderElement>(null);
@@ -41,9 +46,10 @@ export const FunLoader = forwardRef<FunLoaderElement, FunLoaderProps>(function F
     const node = el.current;
     if (!node) return;
     node.paused = !!paused;
-    node.shuffle = !!shuffle;
+    node.ordered = ordered ?? shuffle === false;
     node.messages = messages;
-  }, [paused, shuffle, messages]);
+    node.stages = stages;
+  }, [paused, ordered, shuffle, messages, stages]);
 
   // Strings go through as attributes so server-rendered HTML already carries them.
   return createElement('fun-loader', {

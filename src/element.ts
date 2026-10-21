@@ -1,22 +1,40 @@
-export interface FunLoaderTheme {
-  name: string;
+/** A set of messages that takes over once the wait has lasted `after` ms. */
+export interface FunLoaderStage {
+  after: number;
   messages: readonly string[];
 }
 
-const themes = new Map<string, readonly string[]>();
-
-export function registerTheme(theme: FunLoaderTheme): void {
-  themes.set(theme.name, theme.messages);
+export interface FunLoaderTheme {
+  name: string;
+  /** Stage 0: the messages shown first. */
+  messages: readonly string[];
+  /** All stages, including stage 0. When omitted, the theme has one stage: `messages`. */
+  stages?: readonly FunLoaderStage[];
 }
 
+const themes = new Map<string, readonly FunLoaderStage[]>();
+
+export function registerTheme(theme: FunLoaderTheme): void {
+  themes.set(
+    theme.name,
+    theme.stages?.length ? theme.stages : [{ after: 0, messages: theme.messages }],
+  );
+}
+
+/** The stage 0 messages of a registered theme. */
 export function getTheme(name: string): readonly string[] | undefined {
+  return themes.get(name)?.[0]?.messages;
+}
+
+/** All stages of a registered theme. */
+export function getThemeStages(name: string): readonly FunLoaderStage[] | undefined {
   return themes.get(name);
 }
 
 export const DEFAULT_THEME = 'thinking';
 export const DEFAULT_INTERVAL = 2400;
 const MIN_INTERVAL = 250;
-const FALLBACK_MESSAGES: readonly string[] = ['Thinking…'];
+const FALLBACK: readonly FunLoaderStage[] = [{ after: 0, messages: ['Thinking…'] }];
 
 export const ICONS = ['spinner', 'dots', 'bars', 'pulse', 'sparkle', 'none'] as const;
 export type FunLoaderIcon = (typeof ICONS)[number];
@@ -51,12 +69,20 @@ const css = `:host{display:inline-flex;align-items:center;gap:var(--fun-loader-g
 const Base = (typeof HTMLElement === 'undefined' ? class {} : HTMLElement) as typeof HTMLElement;
 
 export class FunLoader extends Base {
-  static observedAttributes = ['theme', 'interval', 'paused', 'shuffle', 'label', 'icon'];
+  static observedAttributes = ['theme', 'interval', 'paused', 'ordered', 'label', 'icon'];
 
   private _messages: readonly string[] | undefined;
-  private _order: number[] = [];
-  private _pos = 0;
+  /** undefined: use the theme's stages. null: staging disabled. */
+  private _stages: readonly FunLoaderStage[] | null | undefined;
+  private _stage = 0;
+  /** Indices of the current stage's messages still to show before any repeats. */
+  private _bag: number[] = [];
+  /** Active milliseconds banked before the clock last started. */
+  private _elapsed = 0;
+  /** When the clock last started, or undefined while it is stopped. */
+  private _since: number | undefined;
   private _timer: ReturnType<typeof setInterval> | undefined;
+  private _stageTimer: ReturnType<typeof setTimeout> | undefined;
   private _text: HTMLElement | undefined;
   private _label: HTMLElement | undefined;
   private _icon: HTMLElement | undefined;
@@ -83,11 +109,20 @@ export class FunLoader extends Base {
     this.toggleAttribute('paused', value);
   }
 
+  /** Show messages in the order written instead of shuffled. */
+  get ordered(): boolean {
+    return this.hasAttribute('ordered');
+  }
+  set ordered(value: boolean) {
+    this.toggleAttribute('ordered', value);
+  }
+
+  /** The opposite of `ordered`, kept for code written before shuffling became the default. */
   get shuffle(): boolean {
-    return this.hasAttribute('shuffle');
+    return !this.ordered;
   }
   set shuffle(value: boolean) {
-    this.toggleAttribute('shuffle', value);
+    this.ordered = !value;
   }
 
   get label(): string {
@@ -106,19 +141,47 @@ export class FunLoader extends Base {
     this.setAttribute('icon', value);
   }
 
-  /** Custom messages; when set, these take precedence over `theme`. */
+  /** The messages in rotation now: the current stage's. Setting it gives one stage of your own messages. */
   get messages(): readonly string[] {
-    const list = this._messages ?? getTheme(this.theme);
-    return list?.length ? list : FALLBACK_MESSAGES;
+    return this.stages[this._stage]?.messages ?? [];
   }
   set messages(value: readonly string[] | null | undefined) {
-    this._messages = value?.length ? value : undefined;
+    const next = value?.length ? value : undefined;
+    // Only a real change re-picks the message; frameworks often set the same value again.
+    if (next === this._messages) return;
+    this._messages = next;
+    this._reset();
+  }
+
+  /**
+   * The stages in use. Set your own to override the theme's, `[]` or `null` to turn staging off
+   * (stage 0 only), or `undefined` to go back to the theme's.
+   */
+  get stages(): readonly FunLoaderStage[] {
+    const own = this._stages?.filter((s) => s.messages.length);
+    const single = this._messages && [{ after: 0, messages: this._messages }];
+    const list = own?.length
+      ? [...own].sort((a, b) => a.after - b.after)
+      : (single ?? getThemeStages(this.theme) ?? FALLBACK);
+    // Staging off keeps only stage 0. The first stage always starts at 0.
+    const [first, ...rest] = this._stages === null ? list.slice(0, 1) : list;
+    return first ? [{ ...first, after: 0 }, ...rest] : FALLBACK;
+  }
+  set stages(value: readonly FunLoaderStage[] | null | undefined) {
+    const next = value && !value.length ? null : value;
+    if (next === this._stages) return;
+    this._stages = next;
     this._reset();
   }
 
   /** The message currently on screen. */
   get current(): string {
     return this._text?.textContent ?? '';
+  }
+
+  /** The index of the current stage. */
+  get stage(): number {
+    return this._stage;
   }
 
   connectedCallback(): void {
@@ -132,49 +195,72 @@ export class FunLoader extends Base {
     this._renderIcon();
     // Announce the label once rather than every rotating message.
     if (!this.hasAttribute('role')) this.setAttribute('role', 'status');
+    // Each connection starts a fresh wait; the clock only runs while not paused.
+    this._elapsed = 0;
+    this._since = this.paused ? undefined : Date.now();
+    this._stage = 0;
     this._reset();
   }
 
   disconnectedCallback(): void {
     this._stop();
+    this._since = undefined;
   }
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void {
     if (oldValue === newValue || !this.isConnected) return;
     if (name === 'label') this._renderLabel();
     else if (name === 'icon') this._renderIcon();
-    else if (name === 'interval' || name === 'paused') this._schedule();
-    else this._reset();
+    else if (name === 'interval') this._schedule();
+    else if (name === 'paused') {
+      // Bank the active time on pause; restart the clock on resume.
+      this._elapsed = this._now();
+      this._since = this.paused ? undefined : Date.now();
+      this._schedule();
+    } else this._reset();
   }
 
   /** Advance to the next message immediately. */
   next(): void {
     const list = this.messages;
-    if (++this._pos >= this._order.length) this._shuffleOrder(list.length);
-    this._show(list[this._order[this._pos] ?? 0] ?? '');
+    if (!this._bag.length) {
+      const order = list.map((_, i) => i);
+      if (!this.ordered) {
+        for (let i = order.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [order[i], order[j]] = [order[j] as number, order[i] as number];
+        }
+      }
+      // Never show the message already on screen twice in a row, even across stages.
+      if (order.length > 1 && list[order[0] as number] === this.current) {
+        order.push(order.shift() as number);
+      }
+      this._bag = order;
+    }
+    this._show(list[this._bag.shift() as number] ?? '');
   }
 
+  /** Active milliseconds since the element connected, excluding paused time. */
+  private _now(): number {
+    return this._elapsed + (this._since === undefined ? 0 : Date.now() - this._since);
+  }
+
+  /** Re-picks the stage for the time waited so far and shows a fresh message from it. */
   private _reset(): void {
     if (!this._text) return;
-    this._shuffleOrder(this.messages.length);
-    this._show(this.messages[this._order[0] ?? 0] ?? '');
+    const now = this._now();
+    // A reset starts clean: the no-repeat rule is for natural advances, not option changes.
+    this._text.textContent = '';
+    // Stages are sorted, so the current one is the last that has started.
+    this._enter(Math.max(0, this.stages.filter((s) => s.after <= now).length - 1));
     this._renderLabel();
-    this._schedule();
   }
 
-  private _shuffleOrder(length: number): void {
-    const prev = this._order[this._order.length - 1];
-    const order = Array.from({ length }, (_, i) => i);
-    if (this.shuffle) {
-      for (let i = length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [order[i], order[j]] = [order[j] as number, order[i] as number];
-      }
-      // Avoid showing the same message twice in a row across rounds.
-      if (length > 1 && order[0] === prev) order.push(order.shift() as number);
-    }
-    this._order = order;
-    this._pos = 0;
+  private _enter(stage: number): void {
+    this._stage = stage;
+    this._bag = [];
+    this.next();
+    this._schedule();
   }
 
   private _show(message: string): void {
@@ -197,14 +283,19 @@ export class FunLoader extends Base {
 
   private _schedule(): void {
     this._stop();
-    if (!this.paused && this.isConnected && this.messages.length > 1) {
-      this._timer = setInterval(() => this.next(), this.interval);
+    if (this.paused || !this.isConnected) return;
+    if (this.messages.length > 1) this._timer = setInterval(() => this.next(), this.interval);
+    // Switch stages exactly at the boundary rather than on the next rotation tick.
+    const next = this.stages[this._stage + 1];
+    if (next) {
+      this._stageTimer = setTimeout(() => this._enter(this._stage + 1), next.after - this._now());
     }
   }
 
   private _stop(): void {
-    if (this._timer !== undefined) clearInterval(this._timer);
-    this._timer = undefined;
+    clearInterval(this._timer);
+    clearTimeout(this._stageTimer);
+    this._timer = this._stageTimer = undefined;
   }
 }
 

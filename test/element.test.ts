@@ -41,14 +41,14 @@ describe('<fun-loader>', () => {
     }
   });
 
-  it('shows the first message of the default theme', () => {
+  it('shows a message from the default theme', () => {
     const el = mount();
-    expect(el.current).toBe(thinking.messages[0]);
+    expect(thinking.messages).toContain(el.current);
     expect(el.getAttribute('role')).toBe('status');
   });
 
   it('rotates messages on the interval', () => {
-    const el = mount({ theme: 'dev' });
+    const el = mount({ theme: 'dev', ordered: '' });
     const messages = getTheme('dev') ?? [];
     vi.advanceTimersByTime(DEFAULT_INTERVAL);
     expect(el.current).toBe(messages[1]);
@@ -57,7 +57,7 @@ describe('<fun-loader>', () => {
   });
 
   it('wraps around after the last message', () => {
-    const el = mount();
+    const el = mount({ ordered: '' });
     el.messages = ['a', 'b'];
     el.next();
     el.next();
@@ -65,7 +65,7 @@ describe('<fun-loader>', () => {
   });
 
   it('honours a custom interval', () => {
-    const el = mount({ interval: '500' });
+    const el = mount({ interval: '500', ordered: '' });
     el.messages = ['a', 'b'];
     vi.advanceTimersByTime(499);
     expect(el.current).toBe('a');
@@ -79,7 +79,7 @@ describe('<fun-loader>', () => {
   });
 
   it('stops while paused and resumes when unpaused', () => {
-    const el = mount({ paused: '' });
+    const el = mount({ paused: '', ordered: '' });
     el.messages = ['a', 'b'];
     vi.advanceTimersByTime(DEFAULT_INTERVAL * 3);
     expect(el.current).toBe('a');
@@ -95,13 +95,13 @@ describe('<fun-loader>', () => {
   });
 
   it('switches theme when the attribute changes', () => {
-    const el = mount();
+    const el = mount({ ordered: '' });
     el.theme = 'kitchen';
     expect(el.current).toBe(getTheme('kitchen')?.[0]);
   });
 
   it('prefers custom messages over the theme, and falls back when cleared', () => {
-    const el = mount({ theme: 'calm' });
+    const el = mount({ theme: 'calm', ordered: '' });
     el.messages = ['custom'];
     expect(el.current).toBe('custom');
     expect(vi.getTimerCount()).toBe(0);
@@ -113,16 +113,57 @@ describe('<fun-loader>', () => {
     expect(mount({ theme: 'missing' }).current).toBe('Thinking…');
   });
 
-  it('never repeats a message back to back when shuffling', () => {
-    vi.spyOn(Math, 'random').mockReturnValue(0);
-    const el = mount({ shuffle: '' });
+  it('shuffles by default, showing every message once before any repeats', () => {
+    const el = mount();
+    expect(el.ordered).toBe(false);
+    expect(el.shuffle).toBe(true);
+    const list = ['a', 'b', 'c', 'd', 'e'];
+    for (let round = 0; round < 30; round++) {
+      el.messages = list;
+      const seen = [el.current];
+      for (let i = 1; i < list.length; i++) {
+        el.next();
+        seen.push(el.current);
+      }
+      expect([...seen].sort()).toEqual(list);
+      el.messages = [...list];
+    }
+  });
+
+  it('never repeats a message back to back across reshuffles', () => {
+    for (let seed = 0; seed < 25; seed++) {
+      vi.spyOn(Math, 'random').mockReturnValue(seed / 25);
+      const el = mount();
+      el.messages = ['a', 'b', 'c'];
+      const seen = [el.current];
+      for (let i = 0; i < 12; i++) {
+        el.next();
+        seen.push(el.current);
+      }
+      for (let i = 1; i < seen.length; i++) expect(seen[i]).not.toBe(seen[i - 1]);
+      el.remove();
+      vi.restoreAllMocks();
+    }
+  });
+
+  it('keeps the written order with the ordered attribute', () => {
+    const el = mount({ ordered: '' });
     el.messages = ['a', 'b', 'c'];
     const seen = [el.current];
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 5; i++) {
       el.next();
       seen.push(el.current);
     }
-    for (let i = 1; i < seen.length; i++) expect(seen[i]).not.toBe(seen[i - 1]);
+    expect(seen).toEqual(['a', 'b', 'c', 'a', 'b', 'c']);
+  });
+
+  it('keeps shuffle working as a property for older code', () => {
+    const el = mount();
+    el.shuffle = false;
+    expect(el.ordered).toBe(true);
+    expect(el.hasAttribute('ordered')).toBe(true);
+    el.shuffle = true;
+    expect(el.ordered).toBe(false);
   });
 
   it('exposes the label to assistive tech and hides the rotating text', () => {
@@ -157,6 +198,7 @@ describe('<fun-loader>', () => {
     define('pirate-loader');
     const el = document.createElement('pirate-loader') as FunLoader;
     el.setAttribute('theme', 'pirate');
+    el.setAttribute('ordered', '');
     document.body.append(el);
     expect(el.current).toBe('Arr…');
   });

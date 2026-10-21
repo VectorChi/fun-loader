@@ -25,12 +25,25 @@ The component takes every [option](/reference/options) as a prop, plus any norma
   theme="dev"
   icon="dots"
   interval={3000}
-  shuffle
+  ordered
   paused={!visible}
   messages={['Reading your code…', 'Writing tests…']}
   label="Generating code"
   className="my-loader"
 />
+```
+
+Pass `messages` and `stages` as stable arrays: define them outside the component, or wrap them in `useMemo`. A new array on every render restarts the rotation.
+
+```tsx
+const stages = [
+  { after: 0, messages: ['Reading your code…', 'Writing tests…'] },
+  { after: 10_000, messages: ['Big codebase, still reading…'] },
+];
+
+function Status() {
+  return <FunLoader stages={stages} />;
+}
 ```
 
 ## React 18 and 19

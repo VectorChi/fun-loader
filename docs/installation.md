@@ -29,23 +29,23 @@ Using React or Vue? Import the component instead: see [React & Next.js](/framewo
 No build step needed. Add one script tag:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.4"></script>
 
 <fun-loader theme="thinking"></fun-loader>
 ```
 
-The `@0.3` pins you to 0.3.x releases, so a future major change can't break your page. Leave it out to always get the latest version.
+The `@0.4` pins you to 0.4.x releases. Until 1.0, a new minor version (0.5, 0.6) can include breaking changes, so move the pin up on purpose, after reading the [changelog](https://github.com/VectorChi/fun-loader/blob/main/CHANGELOG.md). Leave it out to always get the latest version.
 
-unpkg works too: `https://unpkg.com/@vectorchi/fun-loader@0.3`.
+unpkg works too: `https://unpkg.com/@vectorchi/fun-loader@0.4`.
 
 ## What you get
 
 | Import | What it is | Size |
 | --- | --- | --- |
-| `@vectorchi/fun-loader` | The element and all themes, registered automatically | ~2.9 kB |
-| `@vectorchi/fun-loader/react` | React component | ~3.0 kB |
-| `@vectorchi/fun-loader/vue` | Vue component | ~2.9 kB |
-| `@vectorchi/fun-loader/element` | The element only, nothing registered | ~1.7 kB |
-| `@vectorchi/fun-loader/themes/<name>` | A single theme | tiny |
+| `@vectorchi/fun-loader` | The element and all themes, registered automatically | 3.9 kB |
+| `@vectorchi/fun-loader/react` | React component | 4.1 kB |
+| `@vectorchi/fun-loader/vue` | Vue component | 3.9 kB |
+| `@vectorchi/fun-loader/element` | The element only, nothing registered | 1.9 kB |
+| `@vectorchi/fun-loader/themes/<name>` | A single theme, with its long-wait lines | up to 0.6 kB |
 
 Sizes are minified and compressed, excluding React and Vue themselves. You only ever load one of the first four. See [Smaller builds](/reference/smaller-builds) for the last two.

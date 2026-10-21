@@ -9,7 +9,7 @@ description: "Use fun-loader in plain HTML and JavaScript: attributes, propertie
 Load the script once, then use the tag anywhere:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.4"></script>
 
 <fun-loader theme="kitchen" icon="pulse"></fun-loader>
 ```
@@ -17,7 +17,7 @@ Load the script once, then use the tag anywhere:
 Every [option](/reference/options) except `messages` is an attribute. On/off options are on when present:
 
 ```html
-<fun-loader theme="dev" shuffle paused></fun-loader>
+<fun-loader theme="dev" ordered paused></fun-loader>
 ```
 
 ## From JavaScript

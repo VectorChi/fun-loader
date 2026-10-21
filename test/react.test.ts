@@ -53,7 +53,7 @@ describe('React wrapper', () => {
 
   it('forwards the ref to the element', () => {
     const ref = createRef<FunLoaderElement>();
-    render(createElement(FunLoader, { ref, messages: ['a', 'b'] }));
+    render(createElement(FunLoader, { ref, ordered: true, messages: ['a', 'b'] }));
     expect(ref.current?.current).toBe('a');
     act(() => ref.current?.next());
     expect(ref.current?.current).toBe('b');
@@ -63,6 +63,23 @@ describe('React wrapper', () => {
     const { el } = render(createElement(FunLoader, { className: 'x', id: 'loader' }));
     expect(el.id).toBe('loader');
     expect(el.className).toBe('x');
+  });
+
+  it('shuffles by default, with ordered and the old shuffle={false} keeping order', () => {
+    expect(render(createElement(FunLoader, {})).el.ordered).toBe(false);
+    expect(render(createElement(FunLoader, { ordered: true })).el.ordered).toBe(true);
+    expect(render(createElement(FunLoader, { shuffle: false })).el.ordered).toBe(true);
+    expect(render(createElement(FunLoader, { shuffle: true })).el.ordered).toBe(false);
+  });
+
+  it('passes stages through as a property', () => {
+    const stages = [
+      { after: 0, messages: ['first…'] },
+      { after: 5000, messages: ['later…'] },
+    ];
+    const { el } = render(createElement(FunLoader, { stages }));
+    expect(el.stages).toEqual(stages);
+    expect(el.current).toBe('first…');
   });
 
   it('renders on the server with its attributes', () => {

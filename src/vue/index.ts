@@ -1,5 +1,5 @@
 import { defineComponent, h, type PropType } from 'vue';
-import type { FunLoaderIcon } from '../element';
+import type { FunLoaderIcon, FunLoaderStage } from '../element';
 import { defineAll } from '../register';
 
 // Called explicitly: a bare side-effect import gets tree-shaken away.
@@ -10,17 +10,22 @@ export const FunLoader = defineComponent({
   props: {
     theme: String,
     messages: Array as PropType<readonly string[]>,
+    stages: Array as PropType<readonly FunLoaderStage[] | null>,
     interval: Number,
     paused: Boolean,
-    shuffle: Boolean,
+    /** Show messages in the order written instead of shuffled. */
+    ordered: Boolean,
+    /** @deprecated Shuffling is the default; use `ordered`. `:shuffle="false"` still means ordered. */
+    shuffle: { type: Boolean, default: undefined },
     label: String,
     icon: String as PropType<FunLoaderIcon>,
   },
   setup(props) {
     return () => {
+      const { shuffle, ordered, ...rest } = props;
       // Drop unset props so the element's own defaults apply.
-      const attrs = Object.fromEntries(Object.entries(props).filter(([, v]) => v !== undefined));
-      return h('fun-loader', attrs);
+      const attrs = Object.fromEntries(Object.entries(rest).filter(([, v]) => v !== undefined));
+      return h('fun-loader', { ...attrs, ordered: ordered || shuffle === false });
     };
   },
 });

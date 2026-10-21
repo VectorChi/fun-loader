@@ -12,7 +12,7 @@ Rotating text is a problem for screen readers: announcing a new message every co
 
 - The element has `role="status"`, which screen readers treat as a polite, non-urgent update.
 - They announce a short **label** once, "Loading" by default.
-- The rotating messages and the icon are hidden from them.
+- The rotating messages and the icon are hidden from them, and so are [stage](/reference/options#stages) changes on long waits.
 
 Set a label that says what's happening:
 

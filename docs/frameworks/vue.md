@@ -17,22 +17,32 @@ defineProps({ loading: Boolean });
 </script>
 
 <template>
-  <FunLoader v-if="loading" theme="dev" icon="dots" shuffle />
+  <FunLoader v-if="loading" theme="dev" icon="dots" />
 </template>
 ```
 
 The component takes every [option](/reference/options) as a prop:
 
 ```vue
-<FunLoader
-  theme="finance"
-  icon="bars"
-  :interval="3000"
-  :paused="!visible"
-  :messages="['Fetching rates…', 'Comparing offers…']"
-  label="Loading offers"
-/>
+<script setup>
+import { FunLoader } from '@vectorchi/fun-loader/vue';
+
+const messages = ['Fetching rates…', 'Comparing offers…'];
+</script>
+
+<template>
+  <FunLoader
+    theme="finance"
+    icon="bars"
+    :interval="3000"
+    :paused="!visible"
+    :messages="messages"
+    label="Loading offers"
+  />
+</template>
 ```
+
+Keep `messages` and `stages` in a constant or a `ref` rather than writing the array inline in the template: a new array on every render restarts the rotation.
 
 Props you leave out fall back to the element's defaults.
 
