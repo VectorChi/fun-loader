@@ -4,7 +4,8 @@ import pkg from '../../package.json';
 
 const site = 'https://vectorchi.github.io/fun-loader/';
 const description = 'Playful, rotating loading text for AI requests and other slow tasks.';
-const image = 'https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/article-cover.png';
+const image =
+  'https://raw.githubusercontent.com/VectorChi/fun-loader/main/.github/assets/article-cover.png';
 
 // The plugin is typed against the repo's Vite 8 (which Vitest needs), while VitePress bundles
 // Vite 5. The plugin API is the same at runtime, so cast it to the type VitePress expects.
