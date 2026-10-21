@@ -30,3 +30,12 @@ This is what makes a switch land exactly on the boundary. Entering a stage resta
 
 **No repeat across a stage change, enforced by text, not index.**
 Two stages can share a line, so the check compares the message text with what is on screen.
+
+**Stage 1 and 2 copy is a shared pool, with overrides only where tone requires it.**
+Per-theme stage copy cost about 1 kB compressed and pushed the main entry to 4.09 kB. `src/themes/stages.ts` holds one pool (`LONG_WAIT`, `VERY_LONG_WAIT`) that every theme gets through `staged(messages)`. `calm`, `transfer` and `finance` pass their own lines: calm and transfer must stay reassuring, and finance waits read better with their own wording. This brought the main entry to 3.72 kB.
+
+**The shared pool lives with the themes, not in the element.**
+The element-only build (`/element`) carries no copy at all, and custom themes registered with only `messages` stay single-stage, as before 0.4.0.
+
+**`staged`, `LONG_WAIT` and `VERY_LONG_WAIT` are exported from the main entry.**
+Custom themes can opt in to the shared long-wait lines with `stages: staged(messages)`. They are already in the bundle, so exporting them costs nothing. They are exported from `src/index.ts`, not `src/themes/index.ts`, because `defineAll` registers everything exported from the themes index as a theme.

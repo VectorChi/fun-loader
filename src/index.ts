@@ -6,3 +6,4 @@ defineAll();
 export * from './element';
 export { defineAll } from './register';
 export * from './themes';
+export { LONG_WAIT, staged, VERY_LONG_WAIT } from './themes/stages';

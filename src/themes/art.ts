@@ -1,4 +1,5 @@
 import type { FunLoaderTheme } from '../element';
+import { staged } from './stages';
 
 const messages = [
   'Swirling the stars…',
@@ -15,31 +16,4 @@ const messages = [
   'Adding happy little trees…',
 ];
 
-export const art: FunLoaderTheme = {
-  name: 'art',
-  messages,
-  stages: [
-    { after: 0, messages },
-    {
-      after: 8000,
-      messages: [
-        'Big canvas, small brush…',
-        'Letting the paint dry…',
-        'Adding another layer…',
-        'Mixing a trickier color…',
-        'Stepping back to look…',
-        'Still blending the edges…',
-        'Some pictures take longer…',
-      ],
-    },
-    {
-      after: 20_000,
-      messages: [
-        'Still at the easel…',
-        'This one is a full mural…',
-        'Painting slowly, on purpose…',
-        'Thanks for waiting on the art…',
-      ],
-    },
-  ],
-};
+export const art: FunLoaderTheme = { name: 'art', messages, stages: staged(messages) };

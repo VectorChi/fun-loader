@@ -1,4 +1,5 @@
 import type { FunLoaderTheme } from '../element';
+import { staged } from './stages';
 
 const messages = [
   'Preparing your transfer…',
@@ -18,27 +19,21 @@ const messages = [
 export const transfer: FunLoaderTheme = {
   name: 'transfer',
   messages,
-  stages: [
-    { after: 0, messages },
-    {
-      after: 8000,
-      messages: [
-        'This can take a little longer…',
-        'Still processing your transfer…',
-        'Some transfers take longer…',
-        'Still working on this…',
-        'Thanks for your patience…',
-        'Still on it, thank you…',
-      ],
-    },
-    {
-      after: 20_000,
-      messages: [
-        'Thank you for bearing with us…',
-        'Still working on your transfer…',
-        'Longer waits can be normal…',
-        'We’re still on it…',
-      ],
-    },
-  ],
+  stages: staged(
+    messages,
+    [
+      'This can take a little longer…',
+      'Still processing your transfer…',
+      'Some transfers take longer…',
+      'Still working on this…',
+      'Thanks for your patience…',
+      'Still on it, thank you…',
+    ],
+    [
+      'Thank you for bearing with us…',
+      'Still working on your transfer…',
+      'Longer waits can be normal…',
+      'We’re still on it…',
+    ],
+  ),
 };
