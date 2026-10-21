@@ -1,6 +1,23 @@
+import { execFileSync } from 'node:child_process';
 import { defineConfig, type HeadConfig, type UserConfig } from 'vitepress';
 import llmstxt from 'vitepress-plugin-llms';
 import pkg from '../../package.json';
+
+// When a docs page was first committed and last changed, for its structured data.
+// Needs the full git history: the Pages workflow checks out with fetch-depth: 0.
+function gitDates(file: string): { published?: string | undefined; modified?: string | undefined } {
+  try {
+    const log = execFileSync('git', ['log', '--follow', '--format=%cI', '--', file], {
+      encoding: 'utf8',
+    })
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+    return { published: log[log.length - 1], modified: log[0] };
+  } catch {
+    return {};
+  }
+}
 
 const site = 'https://vectorchi.github.io/fun-loader/';
 const description = 'Playful, rotating loading text for AI requests and other slow tasks.';
@@ -73,6 +90,8 @@ export default defineConfig({
   ],
   // Per-page canonical URL and link-preview tags, plus structured data on the homepage.
   transformHead({ pageData, title, description }) {
+    // The 404 page gets no canonical URL or article data.
+    if (pageData.isNotFound) return [];
     const path = pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '');
     const url = site + path;
     const head: HeadConfig[] = [
@@ -81,6 +100,23 @@ export default defineConfig({
       ['meta', { property: 'og:title', content: title }],
       ['meta', { property: 'og:description', content: description }],
     ];
+    const { published, modified } = gitDates(`docs/${pageData.relativePath}`);
+    const author = { '@type': 'Person', name: 'Adimchi Oka' };
+    const article = {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: title,
+      description,
+      url,
+      image,
+      inLanguage: 'en',
+      author,
+      publisher: author,
+      ...(published && { datePublished: published }),
+      ...(modified && { dateModified: modified }),
+      isPartOf: { '@type': 'WebSite', name: 'fun-loader', url: site },
+    };
+    head.push(['script', { type: 'application/ld+json' }, JSON.stringify(article)]);
     if (path === '') {
       const data = {
         '@context': 'https://schema.org',
@@ -92,8 +128,9 @@ export default defineConfig({
         programmingLanguage: 'TypeScript',
         runtimePlatform: 'Web browser',
         license: 'https://opensource.org/licenses/MIT',
-        author: { '@type': 'Person', name: 'Adimchi Oka' },
+        author,
         version: pkg.version,
+        ...(modified && { dateModified: modified }),
       };
       head.push(['script', { type: 'application/ld+json' }, JSON.stringify(data)]);
     }
