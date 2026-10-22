@@ -43,7 +43,7 @@ const llms = llmstxt({
     '- React/Next.js: `import { FunLoader } from "@vectorchi/fun-loader/react"`, then `<FunLoader theme="dev" />`. Works in React 18 and 19 and in Next.js server components.',
     '- Vue: `import { FunLoader } from "@vectorchi/fun-loader/vue"`.',
     '- Themes: thinking (default), dev, design, art, kitchen, finance, transfer (payments), calm. Icons: spinner (default), dots, bars, pulse, sparkle, orbit, globe, gear, none.',
-    '- Options (attributes and properties): theme, icon, interval (ms, default 2400), ordered (keep written order; messages are shuffled by default), paused, label (screen-reader text, default "Loading"). Property/prop only: `messages` (string[], one stage, overrides theme) and `stages` ({ after: ms, messages }[]; [] or null turns staging off).',
+    '- Options (attributes and properties): theme, icon, interval (ms, default 2400), ordered (keep written order; messages are shuffled by default), paused, icon-only (icon without text), label (screen-reader text, default "Loading"). Property/prop only: `messages` (string[], one stage, overrides theme) and `stages` ({ after: ms, messages }[]; [] or null turns staging off).',
     '- Show it while waiting and remove it when the result arrives; removing it stops its timer.',
   ].join('\n'),
 }) as unknown as VitePlugin;

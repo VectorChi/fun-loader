@@ -101,19 +101,13 @@ fun-loader {
 
 ## Spinner only, for buttons
 
-Inside a button there's rarely room for a sentence. Hide the text part to keep only the animated icon. The visually hidden `label` stays in place for screen readers, but a button combines everything inside it into one spoken name, so check the result with a screen reader:
+Inside a button there's rarely room for a sentence. Add `icon-only` to show just the animated icon. No text timers run while it's on, and the visually hidden `label` stays in place for screen readers. A button combines everything inside it into one spoken name, though, so check the result with a screen reader:
 
 ```html
 <button disabled>
-  <fun-loader icon="spinner" label="Saving"></fun-loader>
+  <fun-loader icon="spinner" icon-only label="Saving"></fun-loader>
   Save
 </button>
-```
-
-```css
-button fun-loader::part(text) {
-  display: none;
-}
 ```
 
 The icon is `1em` square, so it matches the button's font size.

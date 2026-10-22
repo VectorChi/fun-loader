@@ -7,6 +7,7 @@ All notable changes to `@vectorchi/fun-loader`. Until 1.0, a minor version (0.x)
 ### Added
 
 - **Three new icons:** `orbit` (three dots circling in 3D, larger in front and fading behind), `globe` (a turning globe) and `gear` (a gear whose turns speed up and slow down). Pure CSS, like the other icons, and they follow `paused` and reduced-motion settings.
+- **`icon-only` option** (`iconOnly` as a property and React/Vue prop): shows just the icon. Screen readers still hear the label, and no text timers run while it is on.
 
 ### Changed
 

@@ -1,6 +1,6 @@
 ---
 title: "All options: theme, icon, interval, stages"
-description: "Every fun-loader option (theme, icon, interval, ordered, paused, label, messages, stages) with types, defaults and attribute behavior."
+description: "Every fun-loader option (theme, icon, interval, ordered, paused, icon-only, label, messages, stages) with types, defaults and attribute behavior."
 ---
 
 # Options reference
@@ -14,6 +14,7 @@ Every option works as an HTML attribute, as a JavaScript property, and as a prop
 | `interval` | `number` | `2400` | Milliseconds between messages. Values below 250 become 250. |
 | `ordered` | `boolean` | `false` | Show messages in the order written. By default each stage is shuffled: every message shows once before any repeats, and the same message never shows twice in a row. |
 | `paused` | `boolean` | `false` | Stops the text and the icon, and freezes the [wait clock](#stages). |
+| `icon-only` | `boolean` | `false` | Shows only the icon, with no text. Screen readers still hear `label`. The property and prop are `iconOnly`. For text only, use `icon="none"`. |
 | `label` | `string` | `"Loading"` | What screen readers announce. See [Accessibility](/customize/accessibility). |
 | `messages` | `string[]` | none | Your own messages, as a single stage that overrides `theme`. Set to `null` to go back to the theme. |
 | `stages` | `Stage[]` | the theme's | Message sets that take over as the wait grows. See [Stages](#stages). |

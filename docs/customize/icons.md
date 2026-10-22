@@ -37,6 +37,8 @@ An animated icon sits before the text. Pick one with `icon="…"`.
 
 An unknown name falls back to `spinner`, so a typo never leaves an empty gap.
 
+To show the icon without any text, add `icon-only`. For the opposite, text without an icon, use `icon="none"`.
+
 ## Size and color
 
 The icon is `1em` square (`orbit` is a little wider, `1.3em`), so it scales with the font size. It uses the text color unless you set `--fun-loader-icon-color`:

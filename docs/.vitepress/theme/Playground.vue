@@ -10,6 +10,7 @@ const icon = ref('spinner');
 const interval = ref(2400);
 const ordered = ref(false);
 const paused = ref(false);
+const iconOnly = ref(false);
 const fade = ref(300);
 const size = ref(16);
 const color = ref('#7c5cff');
@@ -39,6 +40,7 @@ const snippet = computed(() => {
   if (interval.value !== 2400) attrs.push(`interval="${interval.value}"`);
   if (ordered.value) attrs.push('ordered');
   if (paused.value) attrs.push('paused');
+  if (iconOnly.value) attrs.push('icon-only');
   const css: string[] = [];
   if (size.value !== 16) css.push(`  font-size: ${size.value}px;`);
   if (color.value !== '#7c5cff') css.push(`  --fun-loader-icon-color: ${color.value};`);
@@ -112,6 +114,7 @@ onBeforeUnmount(() => clearInterval(tick));
       <label>Interval <input v-model.number="interval" type="range" min="250" max="5000" step="250" /> <code>{{ interval }}ms</code></label>
       <label><input v-model="ordered" type="checkbox" /> ordered</label>
       <label><input v-model="paused" type="checkbox" /> paused</label>
+      <label><input v-model="iconOnly" type="checkbox" /> icon only</label>
       <label>Fade <input v-model.number="fade" type="range" min="0" max="1500" step="50" /> <code>{{ fade }}ms</code></label>
       <label>Size <input v-model.number="size" type="range" min="12" max="40" /> <code>{{ size }}px</code></label>
       <label>Icon color <input v-model="color" type="color" /></label>
@@ -148,6 +151,7 @@ onBeforeUnmount(() => clearInterval(tick));
           :interval="scaledInterval"
           :ordered="ordered"
           :paused="paused"
+          :iconOnly="iconOnly"
         />
       </div>
     </div>
@@ -171,6 +175,7 @@ onBeforeUnmount(() => clearInterval(tick));
           :interval="interval"
           :ordered="ordered"
           :paused="paused"
+          :iconOnly="iconOnly"
         />
         <button type="button" @click="customLoader?.next()">next()</button>
       </div>
