@@ -38,7 +38,7 @@ const llms = llmstxt({
     '',
     '- Long waits: every theme changes its messages after 8 s and 20 s of active (unpaused) waiting, to lines that acknowledge the wait without faking progress.',
     '- When to use: open-ended waits of a few seconds or more (LLM responses, image generation, reports, payments). For waits under a second a plain spinner is enough; for known progress such as uploads, use a progress bar.',
-    '- Install: `npm install @vectorchi/fun-loader`, then `import "@vectorchi/fun-loader"` once. CDN: `<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.4"></script>`.',
+    '- Install: `npm install @vectorchi/fun-loader`, then `import "@vectorchi/fun-loader"` once. CDN: `<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.5"></script>`.',
     '- HTML: `<fun-loader theme="thinking" icon="spinner"></fun-loader>`.',
     '- React/Next.js: `import { FunLoader } from "@vectorchi/fun-loader/react"`, then `<FunLoader theme="dev" />`. Works in React 18 and 19 and in Next.js server components.',
     '- Vue: `import { FunLoader } from "@vectorchi/fun-loader/vue"`.',

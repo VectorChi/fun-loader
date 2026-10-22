@@ -2,7 +2,7 @@
 
 All notable changes to `@vectorchi/fun-loader`. Until 1.0, a minor version (0.x) can include breaking changes; each one is listed under **Migration**.
 
-## Unreleased
+## 0.5.0
 
 ### Added
 
