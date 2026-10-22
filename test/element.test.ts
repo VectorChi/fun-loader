@@ -192,6 +192,14 @@ describe('<fun-loader>', () => {
     expect(icon()).toBe('i spinner');
   });
 
+  it('offers the orbit, globe and gear icons', () => {
+    for (const name of ['orbit', 'globe', 'gear'] as const) {
+      const el = mount({ icon: name });
+      expect(el.icon).toBe(name);
+      expect(el.shadowRoot?.querySelector('[part="icon"]')?.className).toBe(`i ${name}`);
+    }
+  });
+
   it('supports custom themes and tag names', () => {
     registerTheme({ name: 'pirate', messages: ['Arr…', 'Hoisting sails…'] });
     define('pirate-loader');

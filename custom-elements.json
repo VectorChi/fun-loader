@@ -30,7 +30,7 @@
               "name": "icon",
               "fieldName": "icon",
               "type": {
-                "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'none'"
+                "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'orbit' | 'globe' | 'gear' | 'none'"
               },
               "default": "\"spinner\"",
               "description": "Animated icon shown before the text. Unknown names fall back to spinner."
@@ -86,7 +86,7 @@
               "kind": "field",
               "name": "icon",
               "type": {
-                "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'none'"
+                "text": "'spinner' | 'dots' | 'bars' | 'pulse' | 'sparkle' | 'orbit' | 'globe' | 'gear' | 'none'"
               },
               "default": "\"spinner\"",
               "attribute": "icon"

@@ -36,7 +36,17 @@ export const DEFAULT_INTERVAL = 2400;
 const MIN_INTERVAL = 250;
 const FALLBACK: readonly FunLoaderStage[] = [{ after: 0, messages: ['Thinking…'] }];
 
-export const ICONS = ['spinner', 'dots', 'bars', 'pulse', 'sparkle', 'none'] as const;
+export const ICONS = [
+  'spinner',
+  'dots',
+  'bars',
+  'pulse',
+  'sparkle',
+  'orbit',
+  'globe',
+  'gear',
+  'none',
+] as const;
 export type FunLoaderIcon = (typeof ICONS)[number];
 export const DEFAULT_ICON: FunLoaderIcon = 'spinner';
 
@@ -55,6 +65,17 @@ const css = `:host{display:inline-flex;align-items:center;gap:var(--fun-loader-g
 .pulse::before,.sparkle::before{content:'';position:absolute;inset:0}
 .pulse::before{border-radius:50%;background:currentColor;animation:fl-pulse 1.2s ease-out infinite}
 .sparkle::before{content:'\\2726';display:grid;place-items:center;line-height:1;animation:fl-twinkle 1.6s ease-in-out infinite}
+.orbit{width:1.3em;perspective:4em;transform-style:preserve-3d}
+.orbit>i{display:block;position:absolute;left:50%;top:50%;width:.26em;height:.26em;margin:-.13em;border-radius:50%;transform:rotateX(-18deg) rotateY(var(--a,0deg)) translateZ(.4em) rotateY(calc(-1*var(--a,0deg))) rotateX(18deg);animation:fl-orbit 3.6s linear infinite,fl-depth 3.6s linear infinite}
+.orbit>i:nth-child(2){--a:120deg;animation-delay:0s,-2.4s}.orbit>i:nth-child(3){--a:240deg;animation-delay:0s,-1.2s}
+.globe{box-sizing:border-box;border:.08em solid;border-radius:50%}
+.globe::before{content:'';position:absolute;inset:50% 0 auto;border-top:.08em solid;margin-top:-.04em}
+.globe>i{display:block;position:absolute;inset:0;width:auto;background:none;border:.08em solid;border-radius:50%;animation:fl-meridian 2.4s linear infinite}
+.globe>i:nth-child(2){animation-delay:-.8s}.globe>i:nth-child(3){animation-delay:-1.6s}
+.gear::before{content:'';position:absolute;inset:0;background:radial-gradient(currentColor .3em,#0000 0),repeating-conic-gradient(currentColor 0 20deg,#0000 0 45deg);-webkit-mask:radial-gradient(#0000 .14em,#000 0 .5em,#0000 0);mask:radial-gradient(#0000 .14em,#000 0 .5em,#0000 0);animation:fl-spin 1.6s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes fl-orbit{from{transform:rotateX(-18deg) rotateY(var(--a,0deg)) translateZ(.4em) rotateY(calc(-1*var(--a,0deg))) rotateX(18deg)}to{transform:rotateX(-18deg) rotateY(calc(var(--a,0deg) - 360deg)) translateZ(.4em) rotateY(calc(360deg - var(--a,0deg))) rotateX(18deg)}}
+@keyframes fl-depth{0%,to{opacity:1}50%{opacity:.36}}
+@keyframes fl-meridian{0%{transform:scaleX(1);animation-timing-function:ease-in}50%{transform:scaleX(0);animation-timing-function:ease-out}to{transform:scaleX(1)}}
 @keyframes fl-in{from{opacity:0;transform:translateY(.25em)}to{opacity:1;transform:none}}
 @keyframes fl-spin{to{transform:rotate(1turn)}}
 @keyframes fl-bounce{0%,80%,to{transform:none;opacity:.4}40%{transform:translateY(-.3em);opacity:1}}

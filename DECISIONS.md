@@ -85,3 +85,13 @@ Minifiers don't shorten property names, so the element's private members (`_elap
 
 **The main entry keeps every theme; a smaller default-theme-only entry was tried and dropped.**
 Registering only `thinking` in the main entry, with a new `/all` entry for the rest, brought it to 2.42 kB. It was reverted because it is a silent breaking change: after upgrading, `theme="dev"` would quietly fall back to the default messages unless every app added an import. The main entry stays at 3.88 kB, inside the 4.0 kB hard limit and 0.28 kB over the 3.6 kB target. Apps that want less can already import `/element` plus single themes (see Smaller builds).
+
+## New icons (0.5.0)
+
+**orbit, globe and gear are built into the main entry, and its hard limit rises from 4.0 to 4.4 kB.**
+The three icons cost about 400 B compressed together (orbit ~185 B, globe ~118 B, gear ~92 B) and take the main entry from 3.88 to 4.34 kB. Making them opt-in imports would have kept it under 4.0 kB, but every user would then need an extra import to use them. Building them in keeps `icon="orbit"` working with no setup, which was judged worth about 0.4 kB.
+
+**All three are pure CSS, reusing the icon's existing three `<i>` elements.**
+- orbit: the dots are placed on a tilted circle with 3D transforms, so the browser handles perspective and which dot covers which. Each dot also has a fixed resting position, so with reduced motion they stay spread out and fade instead of stacking in the middle.
+- globe: a circle outline and an equator line, with the three dots restyled as meridian hoops that narrow and widen out of step, which reads as a turning globe.
+- gear: one shape from CSS gradients (teeth from a repeating conic gradient, cut to a ring with a hub hole by a radial mask), turned by the existing spin animation with ease-in-out timing so each turn winds up and slows down.
