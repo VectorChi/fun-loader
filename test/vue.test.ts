@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { createApp, h, nextTick, ref } from 'vue';
+import { createApp, createSSRApp, h, nextTick, ref } from 'vue';
+import { renderToString } from 'vue/server-renderer';
 import type { FunLoader as FunLoaderElement } from '../src';
 import { FunLoader } from '../src/vue';
 
@@ -66,5 +67,38 @@ describe('Vue wrapper iconOnly', () => {
     document.body.append(host);
     createApp({ render: () => h(FunLoader, { iconOnly: true }) }).mount(host);
     expect((host.querySelector('fun-loader') as FunLoaderElement).iconOnly).toBe(true);
+  });
+});
+
+describe('Vue wrapper server rendering', () => {
+  const render = (props: Record<string, unknown>) =>
+    renderToString(createSSRApp({ render: () => h(FunLoader, props) }));
+
+  it('leaves booleans that are off out of the HTML', async () => {
+    // paused="false" would read as paused until hydration.
+    expect(await render({ theme: 'dev' })).toBe('<fun-loader theme="dev"></fun-loader>');
+  });
+
+  it('writes booleans that are on as attributes', async () => {
+    const html = await render({ paused: true, iconOnly: true, ordered: true });
+    expect(html).toMatch(/ paused="true"/);
+    expect(html).toMatch(/ icon-only="true"/);
+    expect(html).toMatch(/ ordered="true"/);
+    expect(await render({ shuffle: false })).toMatch(/ ordered="true"/);
+  });
+
+  it('switches booleans off again in the browser', async () => {
+    const on = ref(true);
+    const host = document.createElement('div');
+    document.body.append(host);
+    createApp({
+      render: () => h(FunLoader, { paused: on.value, iconOnly: on.value, ordered: on.value }),
+    }).mount(host);
+    const el = host.querySelector('fun-loader') as FunLoaderElement;
+    expect([el.paused, el.iconOnly, el.ordered]).toEqual([true, true, true]);
+    on.value = false;
+    await nextTick();
+    expect([el.paused, el.iconOnly, el.ordered]).toEqual([false, false, false]);
+    expect(el.hasAttribute('icon-only')).toBe(false);
   });
 });

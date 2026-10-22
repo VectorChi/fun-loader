@@ -1,8 +1,9 @@
+<img src="https://raw.githubusercontent.com/VectorChi/fun-loader/main/docs/public/logo-512.png" alt="fun-loader logo" width="80" height="80">
+
 # fun-loader
 
 [![npm](https://img.shields.io/npm/v/@vectorchi/fun-loader)](https://www.npmjs.com/package/@vectorchi/fun-loader)
 [![license](https://img.shields.io/npm/l/@vectorchi/fun-loader)](LICENSE)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/VectorChi/fun-loader)
 
 Playful, rotating loading text for AI requests and other slow tasks. Instead of a bare spinner, show "Opening a few mental tabs…", and when the wait drags on, lines that admit it instead of looping the same jokes.
 

@@ -1,6 +1,6 @@
 {
   "name": "@vectorchi/fun-loader",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Playful, rotating loading messages for AI and LLM apps. A tiny web component with React and Vue wrappers.",
   "license": "MIT",
   "author": "Adim (https://github.com/VectorChi)",
