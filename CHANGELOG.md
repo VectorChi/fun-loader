@@ -2,6 +2,16 @@
 
 All notable changes to `@vectorchi/fun-loader`. Until 1.0, a minor version (0.x) can include breaking changes; each one is listed under **Migration**.
 
+## 0.5.1
+
+### Fixed
+
+- **Vue component in server-rendered apps** (Nuxt, Vue SSR): settings that are off were written into the server HTML as `paused="false"` and `ordered="false"`, which the element reads as on. Every loader started paused, with its messages in order, until the page's JavaScript loaded. They are now left out of the HTML. `iconOnly` is now written as `icon-only`, the attribute the element reads, so an icon-only loader is icon-only from the first paint.
+
+### Changed
+
+- README: the project logo at the top, and the DeepWiki badge removed (deepwiki.com refuses image requests from npm, so it showed as a broken image).
+
 ## 0.5.0
 
 ### Added

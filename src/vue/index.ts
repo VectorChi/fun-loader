@@ -24,10 +24,17 @@ export const FunLoader = defineComponent({
   },
   setup(props) {
     return () => {
-      const { shuffle, ordered, ...rest } = props;
+      const { shuffle, ordered, paused, iconOnly, ...rest } = props;
       // Drop unset props so the element's own defaults apply.
       const attrs = Object.fromEntries(Object.entries(rest).filter(([, v]) => v !== undefined));
-      return h('fun-loader', { ...attrs, ordered: ordered || shuffle === false });
+      // Booleans only when true: server rendering writes `false` as paused="false", and the
+      // element treats any paused or ordered attribute as on. icon-only is the attribute name.
+      return h('fun-loader', {
+        ...attrs,
+        paused: paused || undefined,
+        'icon-only': iconOnly || undefined,
+        ordered: ordered || shuffle === false || undefined,
+      });
     };
   },
 });
