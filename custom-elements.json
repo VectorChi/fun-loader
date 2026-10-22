@@ -63,6 +63,15 @@
               "description": "Stop rotating the text and animating the icon."
             },
             {
+              "name": "icon-only",
+              "fieldName": "iconOnly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Show only the icon, no text. Screen readers still hear label, and no text or stage timers run while it is on."
+            },
+            {
               "name": "label",
               "fieldName": "label",
               "type": {
@@ -127,6 +136,15 @@
               },
               "default": "false",
               "attribute": "paused"
+            },
+            {
+              "kind": "field",
+              "name": "iconOnly",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "icon-only"
             },
             {
               "kind": "field",

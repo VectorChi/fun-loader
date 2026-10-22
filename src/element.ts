@@ -51,7 +51,7 @@ export type FunLoaderIcon = (typeof ICONS)[number];
 export const DEFAULT_ICON: FunLoaderIcon = 'spinner';
 
 const css = `:host{display:inline-flex;align-items:center;gap:var(--fun-loader-gap,.5em);font:inherit;color:inherit}
-:host([hidden]){display:none}
+:host([hidden]),:host([icon-only]) .t{display:none}
 .t{display:inline-block;animation:fl-in var(--fun-loader-fade,300ms) ease-out both}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .i{position:relative;flex:none;display:inline-flex;align-items:center;justify-content:space-between;width:1em;height:1em;color:var(--fun-loader-icon-color,currentColor)}
@@ -90,7 +90,15 @@ const css = `:host{display:inline-flex;align-items:center;gap:var(--fun-loader-g
 const Base = (typeof HTMLElement === 'undefined' ? class {} : HTMLElement) as typeof HTMLElement;
 
 export class FunLoader extends Base {
-  static observedAttributes = ['theme', 'interval', 'paused', 'ordered', 'label', 'icon'];
+  static observedAttributes = [
+    'theme',
+    'interval',
+    'paused',
+    'ordered',
+    'label',
+    'icon',
+    'icon-only',
+  ];
 
   private _messages: readonly string[] | undefined;
   /** undefined: use the theme's stages. null: staging disabled. */
@@ -128,6 +136,14 @@ export class FunLoader extends Base {
   }
   set paused(value: boolean) {
     this.toggleAttribute('paused', value);
+  }
+
+  /** Show only the icon. Screen readers still hear `label`; no text timers run meanwhile. */
+  get iconOnly(): boolean {
+    return this.hasAttribute('icon-only');
+  }
+  set iconOnly(value: boolean) {
+    this.toggleAttribute('icon-only', value);
   }
 
   /** Show messages in the order written instead of shuffled. */
@@ -304,7 +320,9 @@ export class FunLoader extends Base {
 
   private _schedule(): void {
     this._stop();
-    if (this.paused || !this.isConnected) return;
+    // With no visible text there is nothing to rotate. The wait clock keeps counting, so turning
+    // the text back on (which resets) lands on the right stage.
+    if (this.paused || this.iconOnly || !this.isConnected) return;
     if (this.messages.length > 1) this._timer = setInterval(() => this.next(), this.interval);
     // Switch stages exactly at the boundary rather than on the next rotation tick.
     const next = this.stages[this._stage + 1];
