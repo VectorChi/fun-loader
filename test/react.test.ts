@@ -72,6 +72,11 @@ describe('React wrapper', () => {
     expect(render(createElement(FunLoader, { shuffle: true })).el.ordered).toBe(false);
   });
 
+  it('passes iconOnly through as a property', () => {
+    expect(render(createElement(FunLoader, { iconOnly: true })).el.iconOnly).toBe(true);
+    expect(render(createElement(FunLoader, {})).el.iconOnly).toBe(false);
+  });
+
   it('passes stages through as a property', () => {
     const stages = [
       { after: 0, messages: ['first…'] },

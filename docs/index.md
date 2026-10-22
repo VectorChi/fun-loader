@@ -1,7 +1,7 @@
 ---
 title: "fun-loader: playful loading text for AI apps"
 titleTemplate: false
-description: "A 3.9 kB web component that shows playful, rotating loading messages while AI requests run, and adapts them as the wait grows. HTML, React, Next.js, Vue."
+description: "A 4.4 kB web component that shows playful, rotating loading messages while AI requests run, and adapts them as the wait grows. HTML, React, Next.js, Vue."
 ---
 
 # Introduction
@@ -25,8 +25,8 @@ fun-loader shows playful, rotating loading text while an AI request or another s
 
 - **One tag, any stack.** `<fun-loader>` is a standard web component. It works in plain HTML, React, Next.js, Vue and anything else that renders HTML.
 - **Wait-aware.** After 8 and 20 seconds, the messages change to ones that acknowledge the longer wait, without faking progress. See [long waits](/guides/ai-responses#long-waits).
-- **Small.** 3.9 kB minified and compressed, with every theme included, and no dependencies.
-- **Ready-made themes.** 8 themes for different products, from AI chat to payments, plus 5 animated icons.
+- **Small.** 4.4 kB minified and compressed, with every theme included, and no dependencies.
+- **Ready-made themes.** 8 themes for different products, from AI chat to payments, plus 8 animated icons.
 - **Your words when you need them.** Pass your own messages, or register a theme your whole app can use.
 - **Accessible by default.** Screen readers hear one short label instead of every rotating message, and it respects reduced-motion settings.
 

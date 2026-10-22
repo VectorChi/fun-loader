@@ -17,6 +17,15 @@ const BANNED = [
   'any second',
   'hang tight',
   'making it pop',
+  // Guarantees the loader can't keep: it doesn't know whether the request is stuck.
+  'not stuck',
+  'promise',
+  // Claims about the request's state, which the loader can't know.
+  'still working',
+  'still processing',
+  'still going',
+  'in progress',
+  'on it',
 ];
 // Stage lines must never fake progress.
 const FAKE_PROGRESS = [

@@ -13,6 +13,8 @@ export const FunLoader = defineComponent({
     stages: Array as PropType<readonly FunLoaderStage[] | null>,
     interval: Number,
     paused: Boolean,
+    /** Show only the icon; screen readers still hear `label`. */
+    iconOnly: Boolean,
     /** Show messages in the order written instead of shuffled. */
     ordered: Boolean,
     /** @deprecated Shuffling is the default; use `ordered`. `:shuffle="false"` still means ordered. */

@@ -101,6 +101,13 @@ describe('stages', () => {
     expect(el.stage).toBe(1);
   });
 
+  it('keeps the wait clock running in icon-only mode', () => {
+    const el = mount({ theme: 'staged', 'icon-only': '' });
+    vi.advanceTimersByTime(1500);
+    el.iconOnly = false;
+    expect(el.stage).toBe(1);
+  });
+
   it('runs no timers while disconnected', () => {
     const el = mount({ theme: 'staged' });
     el.remove();

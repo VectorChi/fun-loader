@@ -1,7 +1,7 @@
 {
   "$schema": "https://context7.com/schema/context7.json",
   "projectTitle": "fun-loader",
-  "description": "A small web component, <fun-loader>, that shows rotating loading messages with an animated icon while an AI/LLM request or other slow task runs. Includes 8 themes, 5 icons, custom messages, and React and Vue wrappers. Messages change as the wait grows. About 3.9 kB, no dependencies. Published on npm as @vectorchi/fun-loader.",
+  "description": "A small web component, <fun-loader>, that shows rotating loading messages with an animated icon while an AI/LLM request or other slow task runs. Includes 8 themes, 8 icons, custom messages, and React and Vue wrappers. Messages change as the wait grows. About 4.4 kB, no dependencies. Published on npm as @vectorchi/fun-loader.",
   "branch": "main",
   "folders": ["docs"],
   "excludeFolders": ["docs/.vitepress"],
@@ -10,7 +10,7 @@
     "In React, use the FunLoader wrapper rather than the raw <fun-loader> tag: on React 18 the raw tag cannot receive a messages array or paused={false}.",
     "In Next.js the React wrapper is already a client component, so it can be rendered from a server component without adding 'use client'.",
     "messages (string[]) is a property or prop only; there is no messages attribute. It overrides theme; set it to null to return to the theme.",
-    "Boolean attributes (paused, ordered) are on whenever present, even paused=\"false\". Turn them off with the property (el.paused = false) or the framework prop. Messages are shuffled by default; add ordered to keep the written order.",
+    "Boolean attributes (paused, ordered, icon-only) are on whenever present, even paused=\"false\". Turn them off with the property (el.paused = false) or the framework prop. Messages are shuffled by default; add ordered to keep the written order. Use icon-only for an icon without text, and icon=\"none\" for text without an icon.",
     "Render the loader only while waiting and remove it when the result arrives; removing it stops its timer. For streamed responses, remove it when the first chunk arrives.",
     "For payment or money-transfer flows use theme=\"transfer\", and don't write custom messages that claim backend steps that aren't actually happening.",
     "Set label to describe the wait for screen readers (default \"Loading\"); the rotating text itself is hidden from them.",

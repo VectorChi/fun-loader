@@ -3,19 +3,19 @@ import type { FunLoaderStage } from '../element';
 /** Lines for waits past 8 s, shared by every theme that doesn't need its own tone. */
 export const LONG_WAIT: readonly string[] = [
   'This one is taking a while…',
-  'Still going, not stuck…',
+  'Taking longer than most…',
   'Bigger job than it looked…',
   'Taking the scenic route…',
   'Worth a little extra time…',
   'Good things, slowly…',
-  'Still at it, promise…',
+  'Good answers can take a while…',
 ];
 
 /** Lines for waits past 20 s, shared the same way. */
 export const VERY_LONG_WAIT: readonly string[] = [
   'Thanks for sticking around…',
-  'Longer than usual, still going…',
-  'Still here, still working…',
+  'Longer than usual, sorry…',
+  'Still waiting on this one…',
   'This one is a deep dive…',
 ];
 

@@ -59,3 +59,12 @@ describe('Vue wrapper ordering', () => {
     expect(mountWith({ shuffle: true }).ordered).toBe(false);
   });
 });
+
+describe('Vue wrapper iconOnly', () => {
+  it('passes iconOnly through as a property', () => {
+    const host = document.createElement('div');
+    document.body.append(host);
+    createApp({ render: () => h(FunLoader, { iconOnly: true }) }).mount(host);
+    expect((host.querySelector('fun-loader') as FunLoaderElement).iconOnly).toBe(true);
+  });
+});

@@ -6,9 +6,9 @@
     "limit": "3 KB"
   },
   {
-    "name": "core + all themes (hard limit 4.0 kB, target 3.6 kB)",
+    "name": "core + all themes (hard limit 4.4 kB)",
     "path": "dist/index.js",
-    "limit": "4 KB"
+    "limit": "4.4 KB"
   },
   {
     "name": "IIFE (CDN)",

@@ -2,6 +2,19 @@
 
 All notable changes to `@vectorchi/fun-loader`. Until 1.0, a minor version (0.x) can include breaking changes; each one is listed under **Migration**.
 
+## Unreleased
+
+### Added
+
+- **Three new icons:** `orbit` (three dots circling in 3D, larger in front and fading behind), `globe` (a turning globe) and `gear` (a gear whose turns speed up and slow down). Pure CSS, like the other icons, and they follow `paused` and reduced-motion settings.
+- **`icon-only` option** (`iconOnly` as a property and React/Vue prop): shows just the icon. Screen readers still hear the label, and no text timers run while it is on.
+
+### Changed
+
+- **No line claims what the loader can't know.** The `transfer` theme is rewritten around waiting ("Waiting for confirmation…", "No need to press again…") instead of status claims like "Still processing your transfer…", which would mislead if a payment stalls. The same goes for long-wait lines elsewhere: "Still going, not stuck…" and "Still at it, promise…" are gone. The copy test now rejects such claims.
+- `art`: "Adding happy little trees…" (a TV catchphrase) is now "Signing the corner…".
+- Size: the main entry is 4.4 kB minified and compressed (was 3.9 kB), and the element alone is 2.3 kB (was 1.9 kB). The new icons account for the increase.
+
 ## 0.4.0
 
 ### Added
