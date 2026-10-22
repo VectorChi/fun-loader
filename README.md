@@ -11,7 +11,7 @@ Playful, rotating loading text for AI requests and other slow tasks. Instead of 
 
 **[Documentation and live examples →](https://vectorchi.github.io/fun-loader/)**
 
-- **One tag, any stack:** a standard web component that works in plain HTML, React, Next.js and Vue.
+- **One tag, any stack:** a standard web component that works in plain HTML, React, Next.js, Vue and Nuxt.
 - **Wait-aware:** after 8 and 20 seconds the messages change to ones that acknowledge the longer wait, without faking progress.
 - **4.4 kB** minified and compressed, with every theme included. No dependencies.
 - **8 themes and 8 animated icons**, or your own messages.
@@ -65,6 +65,14 @@ import { FunLoader } from '@vectorchi/fun-loader/vue';
   <FunLoader v-if="loading" theme="dev" />
 </template>
 ```
+
+**Nuxt**
+
+```sh
+npx nuxi module add @vectorchi/nuxt-fun-loader
+```
+
+Then use `<FunLoader>` anywhere, no import needed. See [Nuxt](https://vectorchi.github.io/fun-loader/frameworks/nuxt).
 
 ## Learn more
 
