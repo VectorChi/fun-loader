@@ -2,6 +2,16 @@
 
 All notable changes to `@vectorchi/fun-loader`. Until 1.0, a minor version (0.x) can include breaking changes; each one is listed under **Migration**.
 
+## Unreleased
+
+### Added
+
+- **Three new icons:** `orbit` (three dots circling in 3D, larger in front and fading behind), `globe` (a turning globe) and `gear` (a gear whose turns speed up and slow down). Pure CSS, like the other icons, and they follow `paused` and reduced-motion settings.
+
+### Changed
+
+- Size: the main entry is 4.4 kB minified and compressed (was 3.9 kB), and the element alone is 2.3 kB (was 1.9 kB). The new icons account for the increase.
+
 ## 0.4.0
 
 ### Added

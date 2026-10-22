@@ -10,7 +10,7 @@ Every option works as an HTML attribute, as a JavaScript property, and as a prop
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `theme` | `string` | `"thinking"` | A [built-in theme](/customize/themes) or one you registered. |
-| `icon` | `string` | `"spinner"` | `spinner`, `dots`, `bars`, `pulse`, `sparkle` or `none`. See [Icons](/customize/icons). |
+| `icon` | `string` | `"spinner"` | `spinner`, `dots`, `bars`, `pulse`, `sparkle`, `orbit`, `globe`, `gear` or `none`. See [Icons](/customize/icons). |
 | `interval` | `number` | `2400` | Milliseconds between messages. Values below 250 become 250. |
 | `ordered` | `boolean` | `false` | Show messages in the order written. By default each stage is shuffled: every message shows once before any repeats, and the same message never shows twice in a row. |
 | `paused` | `boolean` | `false` | Stops the text and the icon, and freezes the [wait clock](#stages). |

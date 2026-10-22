@@ -34,7 +34,7 @@ const llms = llmstxt({
   excludeIndexPage: false,
   ignoreFiles: ['copy-review.md'],
   details: [
-    'fun-loader is a 3.9 kB web component, `<fun-loader>`, that shows rotating, playful loading messages with an animated icon while an AI/LLM request or other slow task runs. No dependencies.',
+    'fun-loader is a 4.4 kB web component, `<fun-loader>`, that shows rotating, playful loading messages with an animated icon while an AI/LLM request or other slow task runs. No dependencies.',
     '',
     '- Long waits: every theme changes its messages after 8 s and 20 s of active (unpaused) waiting, to lines that acknowledge the wait without faking progress.',
     '- When to use: open-ended waits of a few seconds or more (LLM responses, image generation, reports, payments). For waits under a second a plain spinner is enough; for known progress such as uploads, use a progress bar.',
@@ -42,7 +42,7 @@ const llms = llmstxt({
     '- HTML: `<fun-loader theme="thinking" icon="spinner"></fun-loader>`.',
     '- React/Next.js: `import { FunLoader } from "@vectorchi/fun-loader/react"`, then `<FunLoader theme="dev" />`. Works in React 18 and 19 and in Next.js server components.',
     '- Vue: `import { FunLoader } from "@vectorchi/fun-loader/vue"`.',
-    '- Themes: thinking (default), dev, design, art, kitchen, finance, transfer (payments), calm. Icons: spinner (default), dots, bars, pulse, sparkle, none.',
+    '- Themes: thinking (default), dev, design, art, kitchen, finance, transfer (payments), calm. Icons: spinner (default), dots, bars, pulse, sparkle, orbit, globe, gear, none.',
     '- Options (attributes and properties): theme, icon, interval (ms, default 2400), ordered (keep written order; messages are shuffled by default), paused, label (screen-reader text, default "Loading"). Property/prop only: `messages` (string[], one stage, overrides theme) and `stages` ({ after: ms, messages }[]; [] or null turns staging off).',
     '- Show it while waiting and remove it when the result arrives; removing it stops its timer.',
   ].join('\n'),
