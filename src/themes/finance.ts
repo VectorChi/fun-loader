@@ -24,18 +24,18 @@ export const finance: FunLoaderTheme = {
     messages,
     [
       'Lots of rows to get through…',
-      'Big spreadsheet, still going…',
+      'Big spreadsheets take longer…',
       'Thorough beats fast here…',
       'More data than usual…',
-      'Still adding it all up…',
+      'Big reports take a moment…',
       'Working down the long tail…',
       'Every cell gets a look…',
     ],
     [
       'A big report takes a while…',
-      'Still working through it…',
+      'Still waiting on the report…',
       'Accuracy over speed…',
-      'Still counting, carefully…',
+      'Numbers this big take time…',
     ],
   ),
 };

@@ -16,8 +16,8 @@ People are anxious while their money is moving. The `transfer` theme is written 
 ## What makes it different
 
 - **Calm, with no jokes about money.** A line like "Rounding to the nearest cent…" is funny in a dashboard and worrying during a transfer.
-- **Generic on purpose.** It never names a specific step, such as "Verifying recipient". The loader can't know which step your backend is really on, and in a payment flow, a message that claims a check that isn't happening is misleading.
-- **Reassuring.** Messages like "This can take a few seconds…" and "Still working on it…" tell people a wait is normal.
+- **Honest about what it knows.** The loader can't tell whether a transfer is progressing or has stalled, so no line claims it is: nothing like "Still processing your transfer…" or "Verifying recipient…". It only describes the wait, which is always true: "Waiting for confirmation…", "This can take a few seconds…".
+- **Reassuring without promising.** Lines like "Transfers can take a moment…" tell people a wait is normal, and "No need to press again…" gently discourages a second submit.
 
 The `pulse` icon and a slower `interval` make it feel steadier than the default spinner.
 

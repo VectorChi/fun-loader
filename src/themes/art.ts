@@ -13,7 +13,7 @@ const messages = [
   'Squaring the colors…',
   'Floating water lilies…',
   'Ceci n’est pas une image…',
-  'Adding happy little trees…',
+  'Signing the corner…',
 ];
 
 export const art: FunLoaderTheme = { name: 'art', messages, stages: staged(messages) };

@@ -1,6 +1,8 @@
-# Copy review (0.4.0)
+# Copy review (0.4.0 and later)
 
-Every theme’s stage-0 lines, old and new, side by side. Edit the **New** column in the theme files under `src/themes/` before release; `test/copy.test.ts` checks the rules (12 to 14 lines, 32 characters max, ending in "…", no duplicates, no banned phrases).
+Every theme’s stage-0 lines, old (0.3) and new, side by side. Edit the **New** column in the theme files under `src/themes/`; `test/copy.test.ts` checks the rules (12 to 14 lines, 32 characters max, ending in "…", no duplicates, no banned phrases).
+
+**Rule for every line:** never claim what the loader cannot know. Playful lines are fine ("Asking the rubber duck…"); claims about the request’s state are not ("still working", "still processing", "in progress", "not stuck"). What is always true is that the app is waiting.
 
 **Hero line** for the landing page and README: **"Opening a few mental tabs…"** (thinking).
 
@@ -8,7 +10,7 @@ Every theme’s stage-0 lines, old and new, side by side. Edit the **New** colum
 
 Rewritten. Clichés removed ("Connecting the dots", "Pondering deeply", "Brewing ideas") and "Almost had it" (fake progress). Hero line: "Opening a few mental tabs…".
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
 | Thinking… | Opening a few mental tabs… |
 | Connecting the dots… | Rereading your question… |
@@ -28,7 +30,7 @@ Rewritten. Clichés removed ("Connecting the dots", "Pondering deeply", "Brewing
 
 Rewritten. Removed "Compiling thoughts" (cliché) and "Reticulating splines" (from SimCity, another product).
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
 | Compiling thoughts… | Asking the rubber duck… |
 | Resolving dependencies… | Reading the stack trace twice… |
@@ -48,7 +50,7 @@ Rewritten. Removed "Compiling thoughts" (cliché) and "Reticulating splines" (fr
 
 Rewritten. Removed "Making it pop" (cliché).
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
 | Nudging pixels… | Nudging it two pixels left… |
 | Kerning the letters… | Kerning by eye… |
@@ -66,9 +68,9 @@ Rewritten. Removed "Making it pop" (cliché).
 
 ## art
 
-Unchanged: this is the list you picked earlier. Please review two lines for originality: "Ceci n’est pas une image…" (a riff on a famous painting title) and "Adding happy little trees…" (a well-known TV catchphrase).
+Kept the list you picked earlier, except "Adding happy little trees…" (a well-known TV catchphrase), now "Signing the corner…". Please still review "Ceci n’est pas une image…" for originality (a riff on a famous painting title).
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
 | Swirling the stars… | Swirling the stars… |
 | Perfecting a smile… | Perfecting a smile… |
@@ -81,13 +83,13 @@ Unchanged: this is the list you picked earlier. Please review two lines for orig
 | Squaring the colors… | Squaring the colors… |
 | Floating water lilies… | Floating water lilies… |
 | Ceci n’est pas une image… | Ceci n’est pas une image… |
-| Adding happy little trees… | Adding happy little trees… |
+| Adding happy little trees… | Signing the corner… |
 
 ## kitchen
 
 Reworked with more specific, visual lines. Kept "Preheating the oven", "Letting the dough rise", "Reducing the sauce" and "Seasoning to taste".
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
 | Preheating the oven… | Preheating the oven… |
 | Chopping the onions… | Crying over the onions… |
@@ -105,9 +107,9 @@ Reworked with more specific, visual lines. Kept "Preheating the oven", "Letting 
 
 ## finance
 
-Rewritten. Removed "Crunching the numbers" (cliché). The stage 2 override "Still crunching, carefully" is now "Still counting, carefully".
+Rewritten. Removed "Crunching the numbers" (cliché). Its long-wait lines no longer claim work is still happening ("Still adding it all up", "Still working through it"): the loader cannot know that.
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
 | Crunching the numbers… | Reconciling the ledger… |
 | Balancing the books… | Hunting a stray decimal… |
@@ -125,28 +127,28 @@ Rewritten. Removed "Crunching the numbers" (cliché). The stage 2 override "Stil
 
 ## transfer
 
-Reworked to stay reassuring and generic. Removed "Almost there" and "Wrapping things up" (fake progress), "Talking to the bank" and "Moving your money" (claims about specific steps), and "Hang tight" (cliché). Kept "This can take a few seconds" and "Still working on it", which the Payment flows docs quote.
+Rewritten around what is always true: the app is waiting. No line claims what the loader cannot know, such as the transfer being in progress or still processing, because in a payment flow that would be misleading if the request has stalled. Removed fake progress ("Almost there", "Wrapping things up"), step claims ("Talking to the bank", "Moving your money") and "Hang tight". Kept "This can take a few seconds". Added "No need to press again", which also discourages double submits.
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
-| Preparing your transfer… | Preparing your transfer… |
-| Checking the details… | Working on your transfer… |
-| Talking to the bank… | Your transfer is in progress… |
-| Moving your money… | Handling this with care… |
-| Counting every cent… | Taking care of the details… |
-| Getting the paperwork in order… | Getting the paperwork in order… |
-| Double-checking everything… | Processing, step by step… |
-| This can take a few seconds… | This can take a few seconds… |
-| Still working on it… | Still working on it… |
-| Wrapping things up… | One moment, please… |
-| Almost there… | Stay with us a moment… |
-| Hang tight… | Moving at a careful pace… |
+| Preparing your transfer… | Waiting on your transfer… |
+| Checking the details… | Waiting for confirmation… |
+| Talking to the bank… | Waiting to hear back… |
+| Moving your money… | Sent, waiting for a reply… |
+| Counting every cent… | This can take a few seconds… |
+| Getting the paperwork in order… | Transfers can take a moment… |
+| Double-checking everything… | One moment, please… |
+| This can take a few seconds… | Stay with us a moment… |
+| Still working on it… | Hold on just a moment… |
+| Wrapping things up… | Thanks for waiting… |
+| Almost there… | No need to press again… |
+| Hang tight… | Waiting for the reply… |
 
 ## calm
 
 Reworked with more specific, visual lines. Removed "Nearly there" (fake progress).
 
-| Old (0.3) | New (0.4) |
+| Old (0.3) | New |
 | --- | --- |
 | Take a breath… | Take a slow breath… |
 | Settling in… | Letting the tea steep… |
@@ -164,25 +166,25 @@ Reworked with more specific, visual lines. Removed "Nearly there" (fake progress
 
 ## Long-wait stages
 
-New in 0.4.0, so there is no old column. These replace the rotating messages after 8 s and 20 s of active waiting. They acknowledge the wait and never fake progress (no percentages, no "almost", no countdowns).
+New in 0.4.0, so there is no old column. These replace the rotating messages after 8 s and 20 s of active waiting. They acknowledge the wait, never fake progress (no percentages, no "almost", no countdowns), and never claim the request is still progressing.
 
 ### Shared pool (thinking, dev, design, art, kitchen)
 
 **After 8 s**
 
 - This one is taking a while…
-- Still going, not stuck…
+- Taking longer than most…
 - Bigger job than it looked…
 - Taking the scenic route…
 - Worth a little extra time…
 - Good things, slowly…
-- Still at it, promise…
+- Good answers can take a while…
 
 **After 20 s**
 
 - Thanks for sticking around…
-- Longer than usual, still going…
-- Still here, still working…
+- Longer than usual, sorry…
+- Still waiting on this one…
 - This one is a deep dive…
 
 ### finance (own lines, for tone)
@@ -190,37 +192,37 @@ New in 0.4.0, so there is no old column. These replace the rotating messages aft
 **After 8 s**
 
 - Lots of rows to get through…
-- Big spreadsheet, still going…
+- Big spreadsheets take longer…
 - Thorough beats fast here…
 - More data than usual…
-- Still adding it all up…
+- Big reports take a moment…
 - Working down the long tail…
 - Every cell gets a look…
 
 **After 20 s**
 
 - A big report takes a while…
-- Still working through it…
+- Still waiting on the report…
 - Accuracy over speed…
-- Still counting, carefully…
+- Numbers this big take time…
 
 ### transfer (own lines, for tone)
 
 **After 8 s**
 
 - This can take a little longer…
-- Still processing your transfer…
 - Some transfers take longer…
-- Still working on this…
+- Still waiting to hear back…
+- Still waiting for confirmation…
+- Some confirmations take time…
 - Thanks for your patience…
-- Still on it, thank you…
 
 **After 20 s**
 
 - Thank you for bearing with us…
-- Still working on your transfer…
+- Still waiting on your transfer…
 - Longer waits can be normal…
-- We’re still on it…
+- Thanks for staying with us…
 
 ### calm (own lines, for tone)
 
