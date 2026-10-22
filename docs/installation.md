@@ -23,7 +23,7 @@ That defines the `<fun-loader>` tag and registers every built-in theme. Now use 
 <fun-loader theme="dev" icon="dots"></fun-loader>
 ```
 
-Using React or Vue? Import the component instead: see [React & Next.js](/frameworks/react) or [Vue](/frameworks/vue).
+Using React, Vue or Nuxt? Use the component instead: see [React & Next.js](/frameworks/react), [Vue](/frameworks/vue) or [Nuxt](/frameworks/nuxt).
 
 ## From a CDN
 

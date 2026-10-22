@@ -42,6 +42,7 @@ const llms = llmstxt({
     '- HTML: `<fun-loader theme="thinking" icon="spinner"></fun-loader>`.',
     '- React/Next.js: `import { FunLoader } from "@vectorchi/fun-loader/react"`, then `<FunLoader theme="dev" />`. Works in React 18 and 19 and in Next.js server components.',
     '- Vue: `import { FunLoader } from "@vectorchi/fun-loader/vue"`.',
+    '- Nuxt: `npx nuxi module add @vectorchi/nuxt-fun-loader`, then `<FunLoader>` is auto-imported. `funLoader.themes` in nuxt.config bundles only the listed themes; `funLoader.defaults` sets theme, icon, interval and label app-wide.',
     '- Themes: thinking (default), dev, design, art, kitchen, finance, transfer (payments), calm. Icons: spinner (default), dots, bars, pulse, sparkle, orbit, globe, gear, none.',
     '- Options (attributes and properties): theme, icon, interval (ms, default 2400), ordered (keep written order; messages are shuffled by default), paused, icon-only (icon without text), label (screen-reader text, default "Loading"). Property/prop only: `messages` (string[], one stage, overrides theme) and `stages` ({ after: ms, messages }[]; [] or null turns staging off).',
     '- Show it while waiting and remove it when the result arrives; removing it stops its timer.',
@@ -170,6 +171,7 @@ export default defineConfig({
         items: [
           { text: 'React & Next.js', link: '/frameworks/react' },
           { text: 'Vue', link: '/frameworks/vue' },
+          { text: 'Nuxt', link: '/frameworks/nuxt' },
           { text: 'Plain HTML & JavaScript', link: '/frameworks/html' },
         ],
       },

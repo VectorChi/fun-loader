@@ -5,6 +5,8 @@ description: "Use fun-loader in Vue with the FunLoader component, or as a plain 
 
 # Using fun-loader with Vue
 
+Using Nuxt? The [Nuxt module](/frameworks/nuxt) sets all of this up for you.
+
 ## Usage
 
 ```sh

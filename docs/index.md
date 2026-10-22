@@ -23,7 +23,7 @@ fun-loader shows playful, rotating loading text while an AI request or another s
 
 ## Why fun-loader
 
-- **One tag, any stack.** `<fun-loader>` is a standard web component. It works in plain HTML, React, Next.js, Vue and anything else that renders HTML.
+- **One tag, any stack.** `<fun-loader>` is a standard web component. It works in plain HTML, React, Next.js, Vue, Nuxt and anything else that renders HTML.
 - **Wait-aware.** After 8 and 20 seconds, the messages change to ones that acknowledge the longer wait, without faking progress. See [long waits](/guides/ai-responses#long-waits).
 - **Small.** 4.4 kB minified and compressed, with every theme included, and no dependencies.
 - **Ready-made themes.** 8 themes for different products, from AI chat to payments, plus 8 animated icons.
