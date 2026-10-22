@@ -30,14 +30,14 @@ Using React or Vue? Import the component instead: see [React & Next.js](/framewo
 No build step needed. Add one script tag:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.5"></script>
 
 <fun-loader theme="thinking"></fun-loader>
 ```
 
-The `@0.4` pins you to 0.4.x releases. Until 1.0, a new minor version (0.5, 0.6) can include breaking changes, so move the pin up on purpose, after reading the [changelog](https://github.com/VectorChi/fun-loader/blob/main/CHANGELOG.md). Leave it out to always get the latest version.
+The `@0.5` pins you to 0.5.x releases. Until 1.0, a new minor version (0.6, 0.7) can include breaking changes, so move the pin up on purpose, after reading the [changelog](https://github.com/VectorChi/fun-loader/blob/main/CHANGELOG.md). Leave it out to always get the latest version.
 
-unpkg works too: `https://unpkg.com/@vectorchi/fun-loader@0.4`.
+unpkg works too: `https://unpkg.com/@vectorchi/fun-loader@0.5`.
 
 ## What you get
 

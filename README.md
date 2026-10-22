@@ -42,7 +42,7 @@ import '@vectorchi/fun-loader';
 Or with no build step:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.5"></script>
 ```
 
 **React and Next.js**
