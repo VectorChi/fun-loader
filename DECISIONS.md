@@ -93,5 +93,5 @@ The three icons cost about 400 B compressed together (orbit ~185 B, globe ~118 B
 
 **All three are pure CSS, reusing the icon's existing three `<i>` elements.**
 - orbit: the dots are placed on a tilted circle with 3D transforms, so the browser handles perspective and which dot covers which. Each dot also has a fixed resting position, so with reduced motion they stay spread out and fade instead of stacking in the middle.
-- globe: a circle outline and an equator line, with the three dots restyled as meridian hoops that narrow and widen out of step, which reads as a turning globe.
+- globe: seen from slightly above, like the preview. The outline stays a true circle; the equator is a circle tipped back in 3D, and the three dots become meridian hoops turning round a tilted axis. (A first version used flat hoops that only narrowed and widened, which lost the depth.)
 - gear: one shape from CSS gradients (teeth from a repeating conic gradient, cut to a ring with a hub hole by a radial mask), turned by the existing spin animation with ease-in-out timing so each turn winds up and slows down.
