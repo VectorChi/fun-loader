@@ -74,7 +74,7 @@ finance.stages.length; // 3
 
 | Export | Value |
 | --- | --- |
-| `ICONS` | `['spinner', 'dots', 'bars', 'pulse', 'sparkle', 'none']` |
+| `ICONS` | `['spinner', 'dots', 'bars', 'pulse', 'sparkle', 'orbit', 'globe', 'gear', 'none']` |
 | `DEFAULT_THEME` | `'thinking'` |
 | `DEFAULT_ICON` | `'spinner'` |
 | `DEFAULT_INTERVAL` | `2400` |
