@@ -81,6 +81,38 @@ export default function Page() {
 
 The theme and icon are included in the server-rendered HTML, and the text starts rotating as soon as the page's JavaScript loads. It hydrates without warnings in React 18 and 19.
 
+## shadcn/ui
+
+If your app uses [shadcn/ui](https://ui.shadcn.com), add the loader with the shadcn CLI:
+
+```sh
+npx shadcn@latest add https://vectorchi.github.io/fun-loader/r/fun-loader.json
+```
+
+This installs `@vectorchi/fun-loader` and adds `components/ui/fun-loader.tsx`, a small wrapper that follows your theme: the text uses `muted-foreground` and the icon uses `primary`, so it matches your colors and dark mode. The file is yours to edit. Updates to the loader itself come from the npm package.
+
+```tsx
+import { FunLoader } from '@/components/ui/fun-loader';
+
+{loading && <FunLoader theme="dev" />}
+```
+
+Classes you pass win over the defaults, so `className="text-base text-foreground"` gives larger, darker text.
+
+There's also a chat bubble to show while an AI answer is on its way:
+
+```sh
+npx shadcn@latest add https://vectorchi.github.io/fun-loader/r/fun-loader-message.json
+```
+
+```tsx
+import { FunLoaderMessage } from '@/components/fun-loader-message';
+
+{waiting && <FunLoaderMessage />}
+```
+
+The wrapper is made for current shadcn/ui, where theme colors like `--primary` are full colors. In older setups that store them as HSL numbers, the icon falls back to the text color.
+
 ## Using the plain tag
 
 You can also use `<fun-loader>` directly in TSX. Importing `@vectorchi/fun-loader/react` anywhere in your project adds the TypeScript types for it:
