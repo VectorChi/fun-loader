@@ -4,6 +4,8 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "paths": {
+      // The source, not dist/: CI typechecks before it builds.
+      "@vectorchi/fun-loader/react": ["../src/react/index.ts"],
       "@/components/ui/fun-loader": ["./fun-loader/fun-loader.tsx"],
       "@/lib/utils": ["./lib/utils.ts"]
     }
