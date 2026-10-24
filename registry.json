@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "fun-loader",
+  "homepage": "https://vectorchi.github.io/fun-loader/",
+  "items": [
+    {
+      "name": "fun-loader",
+      "type": "registry:ui",
+      "title": "Fun Loader",
+      "description": "Rotating, playful loading messages with an animated icon, themed with your tokens. The lines change when the wait runs long.",
+      "dependencies": ["@vectorchi/fun-loader@^0.5.1"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/fun-loader/fun-loader.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "docs": "Every option is a prop. See https://vectorchi.github.io/fun-loader/frameworks/react"
+    },
+    {
+      "name": "fun-loader-message",
+      "type": "registry:component",
+      "title": "Fun Loader Message",
+      "description": "A chat bubble with a fun-loader inside, to show while an AI answer is on its way.",
+      "registryDependencies": ["utils", "https://vectorchi.github.io/fun-loader/r/fun-loader.json"],
+      "files": [
+        {
+          "path": "registry/fun-loader-message/fun-loader-message.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

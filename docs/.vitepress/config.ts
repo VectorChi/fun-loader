@@ -41,6 +41,7 @@ const llms = llmstxt({
     '- Install: `npm install @vectorchi/fun-loader`, then `import "@vectorchi/fun-loader"` once. CDN: `<script src="https://cdn.jsdelivr.net/npm/@vectorchi/fun-loader@0.5"></script>`.',
     '- HTML: `<fun-loader theme="thinking" icon="spinner"></fun-loader>`.',
     '- React/Next.js: `import { FunLoader } from "@vectorchi/fun-loader/react"`, then `<FunLoader theme="dev" />`. Works in React 18 and 19 and in Next.js server components.',
+    '- shadcn/ui: `npx shadcn@latest add https://vectorchi.github.io/fun-loader/r/fun-loader.json` adds a themed wrapper at components/ui/fun-loader.tsx; `.../r/fun-loader-message.json` adds a chat bubble for pending AI answers.',
     '- Vue: `import { FunLoader } from "@vectorchi/fun-loader/vue"`.',
     '- Nuxt: `npx nuxi module add @vectorchi/nuxt-fun-loader`, then `<FunLoader>` is auto-imported. `funLoader.themes` in nuxt.config bundles only the listed themes; `funLoader.defaults` sets theme, icon, interval and label app-wide.',
     '- Themes: thinking (default), dev, design, art, kitchen, finance, transfer (payments), calm. Icons: spinner (default), dots, bars, pulse, sparkle, orbit, globe, gear, none.',

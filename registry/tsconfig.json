@@ -1,0 +1,13 @@
+{
+  // Typechecks the registry files as they will sit in a shadcn app, where `@/` is the app's src.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "paths": {
+      "@/components/ui/fun-loader": ["./fun-loader/fun-loader.tsx"],
+      "@/lib/utils": ["./lib/utils.ts"]
+    }
+  },
+  "include": ["."],
+  "exclude": []
+}
