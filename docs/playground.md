@@ -8,7 +8,8 @@ aside: false
 
 Try every theme and option here before writing any code. Every change applies to all the loaders below at once, so you can compare themes side by side.
 
-- **Icon** switches the animated icon: `spinner`, `dots`, `bars`, `pulse`, `sparkle`, or `none` for text only.
+- **Icon** switches the animated icon: `spinner`, `dots`, `bars`, `pulse`, `sparkle`, `orbit`, `globe`, `gear`, or `none` for text only.
+- **Icon only** hides the text and keeps the icon, for buttons and other tight spaces.
 - **Interval** sets how long each message stays up. Around 2 to 3 seconds gives people time to read a line without the loader feeling slow.
 - **Ordered** keeps each theme's messages in the order they were written. Leave it off to shuffle them, which is the default.
 - **Paused** stops the text and the icon, and freezes the wait clock.

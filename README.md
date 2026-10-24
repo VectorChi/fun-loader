@@ -83,7 +83,9 @@ Then use `<FunLoader>` anywhere, no import needed. See [Nuxt](https://vectorchi.
 - [All options](https://vectorchi.github.io/fun-loader/reference/options) and [API](https://vectorchi.github.io/fun-loader/reference/api)
 - [Playground](https://vectorchi.github.io/fun-loader/playground)
 
-## Development
+## Contributing
+
+Contributions are welcome: bug reports, new loading lines, fixes and docs. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, the rules for loading lines, and how to open a pull request.
 
 ```sh
 pnpm install
