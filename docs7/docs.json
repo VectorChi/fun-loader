@@ -1,0 +1,69 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "fun-loader",
+  "colors": {
+    "primary": "#6d28d9",
+    "light": "#7c3aed",
+    "dark": "#a78bfa"
+  },
+  "logo": "/images/logo.svg",
+  "favicon": "/images/favicon.svg",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting started",
+        "pages": ["index", "installation"]
+      },
+      {
+        "group": "Guides",
+        "pages": [
+          "guides/ai-responses",
+          "guides/payment-flows",
+          "guides/custom-messages"
+        ]
+      },
+      {
+        "group": "Frameworks",
+        "pages": [
+          "frameworks/react",
+          "frameworks/vue",
+          "frameworks/nuxt",
+          "frameworks/html"
+        ]
+      },
+      {
+        "group": "Customize",
+        "pages": [
+          "customize/themes",
+          "customize/icons",
+          "customize/styling",
+          "customize/accessibility"
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "reference/options",
+          "reference/api",
+          "reference/smaller-builds"
+        ]
+      },
+      {
+        "group": "Playground",
+        "pages": ["playground"]
+      }
+    ]
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/VectorChi/fun-loader"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/VectorChi/fun-loader"
+    }
+  }
+}
